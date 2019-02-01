@@ -1,0 +1,24 @@
+{
+  "type": "jColorfulTheme",
+  "version": 1,
+  "theme": [
+    {
+      "objectType": "common",
+      "background": "#000000",
+      "foreground": "#eeeeee"
+    },
+    {
+      "objectType": "JButton",
+      "background": "#000000",
+      "foreground": "#eeeeee",
+      "border": {
+        "type": "LineBorder",
+        "color": "#333333"
+      }
+    },
+    {
+      "objectType": "JProgressBar",
+      "background": "#333333"
+    }
+  ]
+}
