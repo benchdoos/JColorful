@@ -19,7 +19,10 @@ public class Colorize {
     }
 
     public void colorize(Component component) {
-        component.setBackground(theme.getCommonComponent().getBackgroundColor());
+        final Color backgroundColor = theme.getCommonComponent().getBackgroundColor();
+        System.out.println("> " + String.format("#%02x%02x%02x",
+                backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue()));
+        component.setBackground(backgroundColor);
         component.setForeground(theme.getCommonComponent().getForegroundColor());
 
         if (component instanceof JComponent) {
