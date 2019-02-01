@@ -19,6 +19,6 @@ public class BinaryElementImpl implements BinaryElement {
     }
 
     public void setForegroundColor(Color color) {
-        this.backgroundColor = color;
+        this.foregroundColor = color;
     }
 }

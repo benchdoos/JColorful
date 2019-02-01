@@ -28,7 +28,7 @@ public class BinaryElementDeserializer implements JsonDeserializer<BinaryElement
 
             final JsonElement foreground = object.get("foreground");
             if (foreground != null) {
-                binaryElement.setBackgroundColor(Color.decode(foreground.getAsString()));
+                binaryElement.setForegroundColor(Color.decode(foreground.getAsString()));
             }
 
             return binaryElement;
