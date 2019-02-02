@@ -1,6 +1,7 @@
 package com.github.benchdoos.beans;
 
 import com.github.benchdoos.beans.components.BinaryElement;
+import com.github.benchdoos.beans.components.JTabbedPaneElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 public interface Theme {
@@ -16,6 +17,8 @@ public interface Theme {
     void setName(String name);
 
     JTextComponentElement getTextComponentElement();
+
+    JTabbedPaneElement getTabbedPaneElement();
 
     int getVersion();
 

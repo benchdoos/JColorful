@@ -25,8 +25,14 @@
     {
       "objectType": "JTextComponent",
       "background": "#333333",
-      "foreground": "#ffffff",
-      "caret": "#ffffff"
+      "foreground": "#ffffff"
+    },
+    {
+      "objectType": "JTabbedPane",
+      "tab_background": "#3B3B3B",
+      "tab_foreground": "#E1E1E1",
+      "active_tab_background": "#000000",
+      "active_tab_foreground": "#BCBCBC"
     }
   ]
 }

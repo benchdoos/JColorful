@@ -18,10 +18,9 @@ public class Colorize {
     }
 
     public void colorize(Component component) {
-        final Color commonBackgroundColor = theme.getCommonComponent().getBackgroundColor();
         /*System.out.println("> " + String.format("#%02x%02x%02x",
-                commonBackgroundColor.getRed(), commonBackgroundColor.getGreen(), commonBackgroundColor.getBlue()));*/
-        component.setBackground(commonBackgroundColor);
+                color.getRed(), color.getGreen(), color.getBlue()));*/
+        component.setBackground(theme.getCommonComponent().getBackgroundColor());
         component.setForeground(theme.getCommonComponent().getForegroundColor());
 
         if (component instanceof JTextComponent) {
@@ -37,6 +36,24 @@ public class Colorize {
 
         if (component instanceof JCheckBox) {
             UIManager.put("CheckBox.focus",Color.RED);
+        }
+
+        if (component instanceof JTabbedPane) {
+            JTabbedPane pane = (JTabbedPane) component;
+            for (int i = 0; i < pane.getTabCount(); i++) {
+                try {
+                    final Color bg = theme.getTabbedPaneElement().getTabBackgroundColor();
+                    System.out.println("Tab: " + theme.getTabbedPaneElement());
+
+                    final Color fg = theme.getTabbedPaneElement().getTabForegroundColor();
+                    pane.setBackgroundAt(i, bg);
+                    pane.setForegroundAt(i, fg);
+                    pane.setBackground(theme.getTabbedPaneElement().getActiveTabBackgroundColor());
+                    pane.setForeground(theme.getTabbedPaneElement().getActiveTabForegroundColor());
+                } catch (Exception e) {
+                    /*NOP*/
+                }
+            }
         }
 
     }

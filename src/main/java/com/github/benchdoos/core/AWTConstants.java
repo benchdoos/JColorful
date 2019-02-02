@@ -1,5 +1,6 @@
 package com.github.benchdoos.core;
 
 public interface AWTConstants {
-    public String J_TEXT_COMPONENT = "JTextComponent";
+    String J_TEXT_COMPONENT = "JTextComponent";
+    String J_TABBED_PANE = "JTabbedPane";
 }
