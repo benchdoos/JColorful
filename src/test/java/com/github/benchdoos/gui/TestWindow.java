@@ -14,24 +14,25 @@ public class TestWindow extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JRadioButton radioButton1;
-    private JCheckBox checkBox1;
     private JTextField textField1;
     private JPasswordField passwordField1;
     private JFormattedTextField formattedTextField1;
     private JTextArea awdawdadwdaTextArea;
     private JTextPane dwaddawdTextPane;
     private JEditorPane helloEditorPane;
-    private JComboBox comboBox1;
     private JTable table1;
-    private JList list1;
     private JTabbedPane tabbedPane1;
-    private JTree tree1;
     private JSpinner spinner1;
     private JSlider slider1;
     private JProgressBar progressBar1;
     private JScrollBar scrollBar1;
     private JLabel currentThemeLabel;
+    private JRadioButton radioButton1;
+    private JCheckBox checkBox1;
+    private JList list1;
+    private JComboBox comboBox1;
+    private JTree tree1;
+    private JComboBox comboBox2;
 
     public TestWindow() {
         initData();
