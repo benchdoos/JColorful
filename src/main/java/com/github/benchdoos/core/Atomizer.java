@@ -25,71 +25,82 @@ public class Atomizer {
         component.setForeground(theme.getCommonComponent().getForegroundColor());
 
         if (component instanceof JTextComponent) {
-            JTextComponent textComponent = (JTextComponent) component;
-
-            final JTextComponentElement componentElement = theme.getTextComponentElement();
-            if (componentElement != null) {
-                textComponent.setBackground(componentElement.getBackgroundColor());
-                textComponent.setForeground(componentElement.getForegroundColor());
-                textComponent.setCaretColor(componentElement.getCaretColor());
-                textComponent.setSelectionColor(componentElement.getSelectionColor());
-            }
+            paintJTextComponent((JTextComponent) component);
         }
 
 
         if (component instanceof JButton) {
-            final JButton button = (JButton) component;
-
-            final Color foregroundColor = theme.getButtonElement().getForegroundColor();
-            button.setForeground(foregroundColor);
-            final Color backgroundColor = theme.getButtonElement().getBackgroundColor();
-            button.setBackground(backgroundColor);
-
-            if (foregroundColor != null && backgroundColor != null) {
-                button.setContentAreaFilled(false);
-                button.setOpaque(true);
-            }
+            paintJButton((JButton) component);
         }
 
         if (component instanceof JCheckBox) {
-            UIManager.put("CheckBox.focus",Color.RED);
+            UIManager.put("CheckBox.focus", Color.RED);
             component.repaint();
         }
 
         if (component instanceof JTabbedPane) {
-            JTabbedPane pane = (JTabbedPane) component;
-            for (int i = 0; i < pane.getTabCount(); i++) {
-                try {
-                    final Color bg = theme.getTabbedPaneElement().getTab().getBackgroundColor();
-                    System.out.println("Tab: " + theme.getTabbedPaneElement());
-
-                    final Color fg = theme.getTabbedPaneElement().getTab().getForegroundColor();
-                    pane.setOpaque(false);
-                    pane.setBackgroundAt(i, bg);
-                    pane.setForegroundAt(i, fg);
-                    pane.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
-                    pane.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
-                    UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
-                } catch (Exception e) {
-                    /*NOP*/
-                }
-            }
+            paintJTabbedPane((JTabbedPane) component);
         }
 
         if (component instanceof JTable) {
-            final JTable table = (JTable) component;
-            JTableHeader header = table.getTableHeader();
-            header.setOpaque(false);//remove look and feel
-            header.setBackground(theme.getTableElement().getHeader().getBackgroundColor());
-            header.setForeground(theme.getTableElement().getHeader().getForegroundColor());
-
-            table.setSelectionBackground(theme.getTableElement().getSelectedRow().getBackgroundColor());
-            table.setSelectionForeground(theme.getTableElement().getSelectedRow().getForegroundColor());
-
-            table.setBackground(theme.getTableElement().getRow().getBackgroundColor());
-            table.setForeground(theme.getTableElement().getRow().getForegroundColor());
-            //todo add cell background color setting
+            paintJTable((JTable) component);
         }
 
+    }
+
+    private void paintJButton(JButton component) {
+
+        final Color foregroundColor = theme.getButtonElement().getForegroundColor();
+        component.setForeground(foregroundColor);
+        final Color backgroundColor = theme.getButtonElement().getBackgroundColor();
+        component.setBackground(backgroundColor);
+
+        if (foregroundColor != null && backgroundColor != null) {
+            component.setContentAreaFilled(false);
+            component.setOpaque(true);
+        }
+    }
+
+    private void paintJTabbedPane(JTabbedPane component) {
+        for (int i = 0; i < component.getTabCount(); i++) {
+            try {
+                final Color bg = theme.getTabbedPaneElement().getTab().getBackgroundColor();
+                System.out.println("Tab: " + theme.getTabbedPaneElement());
+
+                final Color fg = theme.getTabbedPaneElement().getTab().getForegroundColor();
+                component.setOpaque(false);
+                component.setBackgroundAt(i, bg);
+                component.setForegroundAt(i, fg);
+                component.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
+                component.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
+                UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
+            } catch (Exception e) {
+                /*NOP*/
+            }
+        }
+    }
+
+    private void paintJTable(JTable component) {
+        JTableHeader header = component.getTableHeader();
+        header.setOpaque(false);//remove look and feel
+        header.setBackground(theme.getTableElement().getHeader().getBackgroundColor());
+        header.setForeground(theme.getTableElement().getHeader().getForegroundColor());
+
+        component.setSelectionBackground(theme.getTableElement().getSelectedRow().getBackgroundColor());
+        component.setSelectionForeground(theme.getTableElement().getSelectedRow().getForegroundColor());
+
+        component.setBackground(theme.getTableElement().getRow().getBackgroundColor());
+        component.setForeground(theme.getTableElement().getRow().getForegroundColor());
+        //todo add cell background color setting
+    }
+
+    private void paintJTextComponent(JTextComponent component) {
+        final JTextComponentElement componentElement = theme.getTextComponentElement();
+        if (componentElement != null) {
+            component.setBackground(componentElement.getBackgroundColor());
+            component.setForeground(componentElement.getForegroundColor());
+            component.setCaretColor(componentElement.getCaretColor());
+            component.setSelectionColor(componentElement.getSelectionColor());
+        }
     }
 }
