@@ -26,13 +26,6 @@
       "selection": "#9F9F9F"
     },
     {
-      "objectType": "JTextComponent",
-      "background": "#333333",
-      "foreground": "#ffffff",
-      "caret": "#ffffff",
-      "selection": "#9F9F9F"
-    },
-    {
       "objectType": "JTabbedPane",
       "tab": {
         "background": "#3B3B3B",
