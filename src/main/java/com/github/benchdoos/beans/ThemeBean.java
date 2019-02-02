@@ -17,6 +17,7 @@ public class ThemeBean implements Theme {
     private int version;
     private String content;
     private BinaryElement commonComponent;
+    private BinaryElement buttonElement;
     private JTextComponentElement textComponentElement;
     private JTabbedPaneElement tabbedPaneElement;
 
@@ -80,6 +81,11 @@ public class ThemeBean implements Theme {
     }
 
     @Override
+    public BinaryElement getButtonElement() {
+        return buttonElement;
+    }
+
+    @Override
     public int getVersion() {
         return version;
     }
@@ -110,6 +116,10 @@ public class ThemeBean implements Theme {
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TEXT_COMPONENT)) {
                 textComponentElement = gson.fromJson(jsonElement, JTextComponentElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_BUTTON)) {
+                buttonElement = gson.fromJson(jsonElement, BinaryElement.class);
             }
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {

@@ -11,8 +11,8 @@
     },
     {
       "objectType": "JButton",
-      "background": "#000000",
-      "foreground": "#eeeeee",
+      "background": "#414141",
+      "foreground": "#BFBFBF",
       "border": {
         "type": "LineBorder",
         "color": "#333333"
@@ -25,7 +25,9 @@
     {
       "objectType": "JTextComponent",
       "background": "#333333",
-      "foreground": "#ffffff"
+      "foreground": "#ffffff",
+      "caret": "#ffffff",
+      "selection": "#9F9F9F"
     },
     {
       "objectType": "JTabbedPane",

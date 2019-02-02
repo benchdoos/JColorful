@@ -31,6 +31,22 @@ public class Colorize {
                 textComponent.setBackground(componentElement.getBackgroundColor());
                 textComponent.setForeground(componentElement.getForegroundColor());
                 textComponent.setCaretColor(componentElement.getCaretColor());
+                textComponent.setSelectionColor(componentElement.getSelectionColor());
+            }
+        }
+
+
+        if (component instanceof JButton) {
+            final JButton button = (JButton) component;
+
+            final Color foregroundColor = theme.getButtonElement().getForegroundColor();
+            button.setForeground(foregroundColor);
+            final Color backgroundColor = theme.getButtonElement().getBackgroundColor();
+            button.setBackground(backgroundColor);
+
+            if (foregroundColor != null && backgroundColor != null) {
+                button.setContentAreaFilled(false);
+                button.setOpaque(true);
             }
         }
 
@@ -52,7 +68,6 @@ public class Colorize {
                     pane.setBackground(theme.getTabbedPaneElement().getActiveTabBackgroundColor());
                     pane.setForeground(theme.getTabbedPaneElement().getActiveTabForegroundColor());
                     UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTabBackgroundColor());
-                    pane.repaint();
                 } catch (Exception e) {
                     /*NOP*/
                 }

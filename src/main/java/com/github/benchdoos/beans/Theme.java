@@ -20,6 +20,8 @@ public interface Theme {
 
     JTabbedPaneElement getTabbedPaneElement();
 
+    BinaryElement getButtonElement();
+
     int getVersion();
 
     void setVersion(int version);
