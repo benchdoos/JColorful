@@ -6,6 +6,7 @@ public class DefaultJTextComponentElement implements JTextComponentElement {
     private Color backgroundColor;
     private Color foregroundColor;
     private Color caretColor;
+    private Color selectionColor;
 
 
     public Color getBackgroundColor() {
@@ -30,5 +31,15 @@ public class DefaultJTextComponentElement implements JTextComponentElement {
 
     public void setForegroundColor(Color color) {
         this.foregroundColor = color;
+    }
+
+    @Override
+    public Color getSelectionColor() {
+        return selectionColor;
+    }
+
+    @Override
+    public void setSelectionColor(Color selectionColor) {
+        this.selectionColor = selectionColor;
     }
 }
