@@ -36,6 +36,7 @@ public class Colorize {
 
         if (component instanceof JCheckBox) {
             UIManager.put("CheckBox.focus",Color.RED);
+            component.repaint();
         }
 
         if (component instanceof JTabbedPane) {
@@ -50,6 +51,8 @@ public class Colorize {
                     pane.setForegroundAt(i, fg);
                     pane.setBackground(theme.getTabbedPaneElement().getActiveTabBackgroundColor());
                     pane.setForeground(theme.getTabbedPaneElement().getActiveTabForegroundColor());
+                    UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTabBackgroundColor());
+                    pane.repaint();
                 } catch (Exception e) {
                     /*NOP*/
                 }

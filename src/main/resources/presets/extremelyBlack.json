@@ -30,7 +30,7 @@
     {
       "objectType": "JTabbedPane",
       "tab_background": "#3B3B3B",
-      "tab_foreground": "#E1E1E1",
+      "tab_foreground": "#A8A8A8",
       "active_tab_background": "#000000",
       "active_tab_foreground": "#BCBCBC"
     }
