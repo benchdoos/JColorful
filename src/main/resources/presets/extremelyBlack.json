@@ -38,10 +38,25 @@
     },
     {
       "objectType": "JTabbedPane",
-      "tab_background": "#3B3B3B",
-      "tab_foreground": "#A8A8A8",
-      "active_tab_background": "#000000",
-      "active_tab_foreground": "#BCBCBC"
+      "tabBackground": "#3B3B3B",
+      "tabForeground": "#A8A8A8",
+      "activeTabBackground": "#000000",
+      "activeTabForeground": "#BCBCBC"
+    },
+    {
+      "objectType": "JTable",
+      "head": {
+        "background": "#333333",
+        "foreground": "#ffffff"
+      },
+      "selectedRow": {
+        "background": "#9B9B9B",
+        "foreground": "#ffffff"
+      },
+      "row": {
+        "background": "#777777",
+        "foreground": "#ffffff"
+      }
     }
   ]
 }

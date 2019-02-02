@@ -2,11 +2,13 @@ package com.github.benchdoos.beans;
 
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JTabbedPaneElement;
+import com.github.benchdoos.beans.components.JTableElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 import com.github.benchdoos.core.AWTConstants;
 import com.github.benchdoos.core.ModelConstants;
 import com.github.benchdoos.serializers.BinaryElementDeserializer;
 import com.github.benchdoos.serializers.JTabbedPaneDeserializer;
+import com.github.benchdoos.serializers.JTableDeserializer;
 import com.github.benchdoos.serializers.JTextComponentDeserializer;
 import com.github.benchdoos.utils.ValidateController;
 import com.google.gson.*;
@@ -20,6 +22,7 @@ public class ThemeBean implements Theme {
     private BinaryElement buttonElement;
     private JTextComponentElement textComponentElement;
     private JTabbedPaneElement tabbedPaneElement;
+    private JTableElement tableElement;
 
     public ThemeBean(String content) {
         this.content = content;
@@ -50,6 +53,11 @@ public class ThemeBean implements Theme {
     @Override
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public JTableElement getTableElement() {
+        return tableElement;
     }
 
     @Override
@@ -104,6 +112,7 @@ public class ThemeBean implements Theme {
         builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
         builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
         builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
+        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
         Gson gson = builder.create();
 
         commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
@@ -124,6 +133,9 @@ public class ThemeBean implements Theme {
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
                 tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
+            }
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
+                tableElement = gson.fromJson(jsonElement, JTableElement.class);
             }
         }
     }

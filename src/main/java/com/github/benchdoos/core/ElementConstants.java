@@ -5,8 +5,11 @@ public interface ElementConstants {
     String FOREGROUND = "foreground";
     String CARET = "caret";
     String SELECTION = "selection";
-    String TAB_BACKGROUND = "tab_background";
-    String TAB_FOREGROUND = "tab_foreground";
-    String ACTIVE_TAB_FOREGROUND = "active_tab_foreground";
-    String ACTIVE_TAB_BACKGROUND = "active_tab_background";
+    String TAB_BACKGROUND = "tabBackground";
+    String TAB_FOREGROUND = "tabForeground";
+    String ACTIVE_TAB_FOREGROUND = "activeTabForeground";
+    String ACTIVE_TAB_BACKGROUND = "activeTabBackground";
+    String TABLE_HEAD = "head";
+    String TABLE_ROW = "row";
+    String TABLE_SELECTED_ROW = "selectedRow";
 }

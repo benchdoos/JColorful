@@ -4,6 +4,7 @@ import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
@@ -63,6 +64,7 @@ public class Colorize {
                     System.out.println("Tab: " + theme.getTabbedPaneElement());
 
                     final Color fg = theme.getTabbedPaneElement().getTabForegroundColor();
+                    pane.setOpaque(false);
                     pane.setBackgroundAt(i, bg);
                     pane.setForegroundAt(i, fg);
                     pane.setBackground(theme.getTabbedPaneElement().getActiveTabBackgroundColor());
@@ -72,6 +74,21 @@ public class Colorize {
                     /*NOP*/
                 }
             }
+        }
+
+        if (component instanceof JTable) {
+            final JTable table = (JTable) component;
+            JTableHeader header = table.getTableHeader();
+            header.setOpaque(false);//remove look and feel
+            header.setBackground(theme.getTableElement().getHeader().getBackgroundColor());
+            header.setForeground(theme.getTableElement().getHeader().getForegroundColor());
+
+            table.setSelectionBackground(theme.getTableElement().getSelectedRow().getBackgroundColor());
+            table.setSelectionForeground(theme.getTableElement().getSelectedRow().getForegroundColor());
+
+            table.setBackground(theme.getTableElement().getRow().getBackgroundColor());
+            table.setForeground(theme.getTableElement().getRow().getForegroundColor());
+            //todo add cell background color setting
         }
 
     }

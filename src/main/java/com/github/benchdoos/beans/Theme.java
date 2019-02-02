@@ -2,11 +2,14 @@ package com.github.benchdoos.beans;
 
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JTabbedPaneElement;
+import com.github.benchdoos.beans.components.JTableElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 public interface Theme {
 
     String getAuthor();
+
+    JTableElement getTableElement();
 
     void setAuthor(String author);
 
