@@ -1,55 +1,32 @@
 package com.github.benchdoos.beans.components;
 
-import java.awt.*;
-
 public class JTabbedPaneElementImpl implements JTabbedPaneElement {
-    private Color tabBackgroundColor;
-    private Color tabForegroundColor;
-    private Color activeTabBackgroundColor;
-    private Color activeTabForegroundColor;
+    private BinaryElement tab;
+    private BinaryElement activeTab;
 
-    public Color getActiveTabBackgroundColor() {
-        return activeTabBackgroundColor;
+    public BinaryElement getActiveTab() {
+        return activeTab;
     }
 
-    public void setActiveTabBackgroundColor(Color activeTabBackgroundColor) {
-        this.activeTabBackgroundColor = activeTabBackgroundColor;
-    }
-
-    public Color getActiveTabForegroundColor() {
-        return activeTabForegroundColor;
-    }
-
-    public void setActiveTabForegroundColor(Color activeTabForegroundColor) {
-        this.activeTabForegroundColor = activeTabForegroundColor;
+    public void setActiveTab(BinaryElement activeTab) {
+        this.activeTab = activeTab;
     }
 
     @Override
-    public Color getTabBackgroundColor() {
-        return tabBackgroundColor;
+    public BinaryElement getTab() {
+        return tab;
     }
 
     @Override
-    public void setTabBackgroundColor(Color color) {
-        this.tabBackgroundColor = color;
-    }
-
-    @Override
-    public Color getTabForegroundColor() {
-        return tabForegroundColor;
-    }
-
-    @Override
-    public void setTabForegroundColor(Color tabForegroundColor) {
-        this.tabForegroundColor = tabForegroundColor;
+    public void setTab(BinaryElement tab) {
+        this.tab = tab;
     }
 
     @Override
     public String toString() {
-        return "JTabbedPaneElementImpl{" + "tabBackgroundColor=" + tabBackgroundColor +
-                ", tabForegroundColor=" + tabForegroundColor +
-                ", activeTabBackgroundColor=" + activeTabBackgroundColor +
-                ", activeTabForegroundColor=" + activeTabForegroundColor +
+        return "JTabbedPaneElementImpl{" +
+                "tab=" + tab +
+                ", activeTab=" + activeTab +
                 '}';
     }
 }

@@ -1,21 +1,12 @@
 package com.github.benchdoos.beans.components;
 
-import java.awt.*;
-
 public interface JTabbedPaneElement extends ThemeElement {
-    Color getActiveTabBackgroundColor();
+    BinaryElement getActiveTab();
 
-    void setActiveTabBackgroundColor(Color decode);
+    void setActiveTab(BinaryElement activeTab);
 
-    Color getActiveTabForegroundColor();
+    BinaryElement getTab();
 
-    void setActiveTabForegroundColor(Color decode);
+    void setTab(BinaryElement tab);
 
-    Color getTabBackgroundColor();
-
-    void setTabBackgroundColor(Color color);
-
-    Color getTabForegroundColor();
-
-    void setTabForegroundColor(Color decode);
 }

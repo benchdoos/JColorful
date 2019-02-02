@@ -60,16 +60,16 @@ public class Colorize {
             JTabbedPane pane = (JTabbedPane) component;
             for (int i = 0; i < pane.getTabCount(); i++) {
                 try {
-                    final Color bg = theme.getTabbedPaneElement().getTabBackgroundColor();
+                    final Color bg = theme.getTabbedPaneElement().getTab().getBackgroundColor();
                     System.out.println("Tab: " + theme.getTabbedPaneElement());
 
-                    final Color fg = theme.getTabbedPaneElement().getTabForegroundColor();
+                    final Color fg = theme.getTabbedPaneElement().getTab().getForegroundColor();
                     pane.setOpaque(false);
                     pane.setBackgroundAt(i, bg);
                     pane.setForegroundAt(i, fg);
-                    pane.setBackground(theme.getTabbedPaneElement().getActiveTabBackgroundColor());
-                    pane.setForeground(theme.getTabbedPaneElement().getActiveTabForegroundColor());
-                    UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTabBackgroundColor());
+                    pane.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
+                    pane.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
+                    UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
                 } catch (Exception e) {
                     /*NOP*/
                 }
