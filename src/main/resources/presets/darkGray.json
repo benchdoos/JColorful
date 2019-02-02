@@ -20,6 +20,18 @@
     {
       "objectType": "JProgressBar",
       "background": "#333333"
+    },
+    {
+      "objectType": "JTextComponent",
+      "background": "#717171",
+      "foreground": "#ffffff",
+      "caret": "#ffffff"
+    },
+    {
+      "objectType": "JTextField",
+      "background": "#B3B3B3",
+      "foreground": "#000000",
+      "caret": "#000000"
     }
   ]
 }
