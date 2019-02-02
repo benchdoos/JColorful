@@ -2,11 +2,13 @@ package com.github.benchdoos.beans.components;
 
 import java.awt.*;
 
-public interface BinaryElement extends EmptyElement {
-    public Color getBackgroundColor();
-    public Color getForegroundColor();
+public interface BinaryElement {
+    Color getBackgroundColor();
 
-    public void setBackgroundColor(Color color);
-    public void setForegroundColor(Color color);
+    void setBackgroundColor(Color color);
+
+    Color getForegroundColor();
+
+    void setForegroundColor(Color color);
 
 }

@@ -3,7 +3,6 @@ package com.github.benchdoos.serializers;
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.BinaryElementImpl;
 import com.github.benchdoos.core.ElementConstants;
-import com.github.benchdoos.core.ModelConstants;
 import com.google.gson.*;
 
 import java.awt.*;
@@ -14,11 +13,6 @@ public class BinaryElementDeserializer implements JsonDeserializer<BinaryElement
         JsonObject object = jsonElement.getAsJsonObject();
 
         BinaryElementImpl binaryElement = new BinaryElementImpl();
-
-        final JsonElement name = object.get(ModelConstants.OBJECT_TYPE);
-        if (name != null) {
-            binaryElement.setName(name.getAsString());
-        }
 
         final JsonElement background = object.get(ElementConstants.BACKGROUND);
         if (background != null) {

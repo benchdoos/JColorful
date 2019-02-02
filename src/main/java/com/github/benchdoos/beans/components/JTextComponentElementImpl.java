@@ -40,16 +40,6 @@ public class JTextComponentElementImpl implements JTextComponentElement {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
     public Color getSelectionColor() {
         return selectionColor;
     }
