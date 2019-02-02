@@ -1,6 +1,7 @@
 package com.github.benchdoos.gui;
 
 import com.github.benchdoos.beans.DefaultThemes;
+import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.core.JColorful;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TestWindow extends JFrame {
+    private Theme current = DefaultThemes.EXTREMELY_BLACK;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -29,11 +31,12 @@ public class TestWindow extends JFrame {
     private JSlider slider1;
     private JProgressBar progressBar1;
     private JScrollBar scrollBar1;
+    private JLabel currentThemeLabel;
 
     public TestWindow() {
+        initData();
         initGui();
         initButtons();
-        initData();
     }
 
     private void initData() {
@@ -84,10 +87,20 @@ public class TestWindow extends JFrame {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         setSize(new Dimension(800,400));
+
+        currentThemeLabel.setText(current.getName());
     }
 
     private void onOK() {
-        new JColorful(DefaultThemes.GRAY).colorize(this);
+        if (current.equals(DefaultThemes.EXTREMELY_BLACK)) {
+            current = DefaultThemes.DARK_GRAY;
+            new JColorful(DefaultThemes.DARK_GRAY).colorize(this);
+        } else {
+            current = DefaultThemes.EXTREMELY_BLACK;
+            new JColorful(DefaultThemes.EXTREMELY_BLACK).colorize(this);
+        }
+
+        currentThemeLabel.setText(current.getName());
     }
 
     private void onCancel() {

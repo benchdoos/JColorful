@@ -1,31 +1,23 @@
 package com.github.benchdoos.core;
 
-import com.github.benchdoos.beans.DefaultThemes;
-import com.github.benchdoos.beans.JTheme;
+import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.ThemeBean;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class JColorful {
-    private JTheme themeBean = null;
+    private Theme themeBean = null;
 
     public JColorful() {
     }
 
-    public JTheme getThemeBean() {
-        return themeBean;
-    }
-
-    public JColorful setThemeBean(ThemeBean themeBean) {
+    public JColorful(Theme themeBean) {
+        if (themeBean == null) throw new IllegalArgumentException("Theme bean can not be null");
         this.themeBean = themeBean;
-        return this;
-    }
-
-    public JColorful(JTheme themeBean) {
-        if(themeBean==null) throw new IllegalArgumentException("JTheme bean can not be null");
-
-        this.themeBean = themeBean;
+        System.out.println("JColorful was set a Theme:"
+                + " name: " + themeBean.getName()
+                + "; by: " + themeBean.getAuthor()
+                + "; version: " + themeBean.getVersion());
     }
 
     public void colorize(Component component) {
@@ -42,5 +34,14 @@ public class JColorful {
             new Colorize(themeBean).colorize(component);
         }
 
+    }
+
+    public Theme getThemeBean() {
+        return themeBean;
+    }
+
+    public JColorful setThemeBean(ThemeBean themeBean) {
+        this.themeBean = themeBean;
+        return this;
     }
 }

@@ -9,8 +9,10 @@ import com.github.benchdoos.serializers.JTextComponentDeserializer;
 import com.github.benchdoos.utils.ValidateController;
 import com.google.gson.*;
 
-public class ThemeBean implements JTheme {
-
+public class ThemeBean implements Theme {
+    private String name;
+    private String author;
+    private int version;
     private String content;
     private BinaryElement commonComponent;
     private JTextComponentElement textComponentElement;
@@ -22,15 +24,62 @@ public class ThemeBean implements JTheme {
             throw new IllegalArgumentException("JSON is not valid");
         }
 
+
+        fillInfo();
         parseContent();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    private void fillInfo() {
+        JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
+        System.out.println(rootElement);
+        final JsonPrimitive asJsonPrimitive = rootElement.getAsJsonPrimitive(ModelConstants.NAME);
+        this.author = rootElement.getAsJsonPrimitive(ModelConstants.AUTHOR).getAsString();
+        System.out.println(">>>" + asJsonPrimitive);
+        this.name = asJsonPrimitive.getAsString();
+        this.version = rootElement.getAsJsonPrimitive(ModelConstants.VERSION).getAsInt();
+    }
+
+    @Override
+    public String getAuthor() {
+        return author;
+    }
+
+    @Override
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public BinaryElement getCommonComponent() {
         return this.commonComponent;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public JTextComponentElement getTextComponentElement() {
         return this.textComponentElement;
+    }
+
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     private void parseContent() {
@@ -56,7 +105,5 @@ public class ThemeBean implements JTheme {
                 textComponentElement = gson.fromJson(jsonElement, JTextComponentElement.class);
             }
         }
-
-
     }
 }

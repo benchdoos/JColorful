@@ -3,11 +3,21 @@ package com.github.benchdoos.beans;
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
-import javax.swing.text.JTextComponent;
+public interface Theme {
 
-public interface JTheme {
+    String getAuthor();
+
+    void setAuthor(String author);
 
     BinaryElement getCommonComponent();
 
+    String getName();
+
+    void setName(String name);
+
     JTextComponentElement getTextComponentElement();
+
+    int getVersion();
+
+    void setVersion(int version);
 }

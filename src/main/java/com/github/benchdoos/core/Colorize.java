@@ -1,6 +1,6 @@
 package com.github.benchdoos.core;
 
-import com.github.benchdoos.beans.JTheme;
+import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 import javax.swing.*;
@@ -8,9 +8,9 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 
 public class Colorize {
-    private JTheme theme;
+    private Theme theme;
 
-    public Colorize(JTheme theme) {
+    public Colorize(Theme theme) {
         if (theme == null) {
             throw new IllegalArgumentException("Colorize theme can not be null");
         }

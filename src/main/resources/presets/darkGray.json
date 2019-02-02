@@ -1,6 +1,8 @@
 {
   "type": "jColorfulTheme",
+  "name": "Dark gray",
   "version": 1,
+  "author": "Eugene Zrazhevsky",
   "theme": [
     {
       "objectType": "common",
