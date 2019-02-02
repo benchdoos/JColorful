@@ -26,12 +26,12 @@ public class JColorful {
             final Component[] components = container.getComponents();
             for (final Component coloringComponent : components) {
                 if (coloringComponent != null) {
-                    new Colorize(themeBean).colorize(coloringComponent);
+                    new Atomizer(themeBean).colorize(coloringComponent);
                     colorize(coloringComponent);
                 }
             }
         } else {
-            new Colorize(themeBean).colorize(component);
+            new Atomizer(themeBean).colorize(component);
         }
 
     }

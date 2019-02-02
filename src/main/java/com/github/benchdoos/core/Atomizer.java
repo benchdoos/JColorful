@@ -8,12 +8,12 @@ import javax.swing.table.JTableHeader;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
-public class Colorize {
+public class Atomizer {
     private Theme theme;
 
-    public Colorize(Theme theme) {
+    public Atomizer(Theme theme) {
         if (theme == null) {
-            throw new IllegalArgumentException("Colorize theme can not be null");
+            throw new IllegalArgumentException("Atomizer theme can not be null");
         }
         this.theme = theme;
     }
