@@ -52,7 +52,6 @@ public class ThemeBean implements JTheme {
             JsonObject object = (JsonObject) jsonElement;
             final JsonElement element = object.get(ModelConstants.OBJECT_TYPE);
 
-            System.out.println("I am here");
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TEXT_COMPONENT)) {
                 textComponentElement = gson.fromJson(jsonElement, JTextComponentElement.class);
             }

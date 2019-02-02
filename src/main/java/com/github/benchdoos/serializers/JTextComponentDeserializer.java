@@ -29,6 +29,11 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
             element.setCaretColor(Color.decode(caretColor.getAsString()));
         }
 
+        final JsonElement selectionElement = object.get(ElementConstants.SELECTION);
+        if (selectionElement != null) {
+            element.setSelectionColor(Color.decode(selectionElement.getAsString()));
+        }
+
         return element;
     }
 }

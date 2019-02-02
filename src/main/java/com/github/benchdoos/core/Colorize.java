@@ -1,6 +1,7 @@
 package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.JTheme;
+import com.github.benchdoos.beans.components.JTextComponentElement;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -17,17 +18,21 @@ public class Colorize {
     }
 
     public void colorize(Component component) {
-        final Color backgroundColor = theme.getCommonComponent().getBackgroundColor();
+        final Color commonBackgroundColor = theme.getCommonComponent().getBackgroundColor();
         /*System.out.println("> " + String.format("#%02x%02x%02x",
-                backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue()));*/
-        component.setBackground(backgroundColor);
+                commonBackgroundColor.getRed(), commonBackgroundColor.getGreen(), commonBackgroundColor.getBlue()));*/
+        component.setBackground(commonBackgroundColor);
         component.setForeground(theme.getCommonComponent().getForegroundColor());
 
         if (component instanceof JTextComponent) {
             JTextComponent textComponent = (JTextComponent) component;
-            textComponent.setBackground(theme.getTextComponentElement().getBackgroundColor());
-            textComponent.setForeground(theme.getTextComponentElement().getForegroundColor());
-            textComponent.setCaretColor(theme.getTextComponentElement().getCaretColor());
+
+            final JTextComponentElement componentElement = theme.getTextComponentElement();
+            if (componentElement != null) {
+                textComponent.setBackground(componentElement.getBackgroundColor());
+                textComponent.setForeground(componentElement.getForegroundColor());
+                textComponent.setCaretColor(componentElement.getCaretColor());
+            }
         }
 
         if (component instanceof JCheckBox) {
