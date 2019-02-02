@@ -12,11 +12,7 @@
     {
       "objectType": "JButton",
       "background": "#414141",
-      "foreground": "#BFBFBF",
-      "border": {
-        "type": "LineBorder",
-        "color": "#333333"
-      }
+      "foreground": "#BFBFBF"
     },
     {
       "objectType": "JProgressBar",
