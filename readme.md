@@ -41,7 +41,7 @@ Simple theme example (section "common" is required):
 Library should work like this:
 
 before:
-<img src="/public/white.jpg" align="right" />
+<img src="/public/white.jpg" />
 
 after:
-<img src="/public/dark.jpg" align="right" />
+<img src="/public/dark.jpg" />
