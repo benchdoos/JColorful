@@ -1,9 +1,5 @@
 package com.github.benchdoos.beans;
 
-import sun.misc.IOUtils;
-
-import java.io.IOException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class DefaultThemes {
@@ -13,8 +9,8 @@ public class DefaultThemes {
 
 
     private JTheme getTheme(String path) {
-        Scanner s = new Scanner(DefaultThemes.class.getResourceAsStream(path)).useDelimiter("\\A");
-        String shaderCode = s.hasNext() ? s.next() : "";
-        return new ThemeBean(shaderCode);
+        Scanner scanner = new Scanner(DefaultThemes.class.getResourceAsStream(path)).useDelimiter("\\A");
+        String content = scanner.hasNext() ? scanner.next() : "";
+        return new ThemeBean(content);
     }
 }
