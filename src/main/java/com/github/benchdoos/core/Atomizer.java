@@ -28,10 +28,14 @@ public class Atomizer {
             paintJTextComponent((JTextComponent) component);
         }
 
-
         if (component instanceof JButton) {
             paintJButton((JButton) component);
         }
+
+        if (component instanceof JProgressBar) {
+            paintJProgressBar((JProgressBar) component);
+        }
+
 
         if (component instanceof JCheckBox) {
             UIManager.put("CheckBox.focus", Color.RED);
@@ -46,6 +50,21 @@ public class Atomizer {
             paintJTable((JTable) component);
         }
 
+    }
+
+    private void paintJProgressBar(JProgressBar component) {
+        //found no another way to do this
+        if (!component.isIndeterminate()) {
+            component.setStringPainted(true);
+            component.setOpaque(false);
+            component.setBackground(theme.getProgressBarElement().getBackgroundColor());
+            component.setForeground(theme.getProgressBarElement().getForegroundColor());
+            UIManager.put("ProgressBar.background", theme.getProgressBarElement().getBackgroundColor());
+            UIManager.put("ProgressBar.foreground", theme.getProgressBarElement().getForegroundColor());
+            UIManager.put("ProgressBar.selectionBackground", theme.getProgressBarElement().getStringElement().getBackgroundColor());
+            UIManager.put("ProgressBar.selectionForeground", theme.getProgressBarElement().getStringElement().getForegroundColor());
+            SwingUtilities.updateComponentTreeUI(component);
+        }
     }
 
     private void paintJButton(JButton component) {

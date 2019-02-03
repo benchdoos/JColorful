@@ -10,4 +10,5 @@ public interface ElementConstants {
     String TABLE_HEAD = "head";
     String TABLE_ROW = "row";
     String TABLE_SELECTED_ROW = "selectedRow";
+    String STRING_ELEMENT = "string";
 }

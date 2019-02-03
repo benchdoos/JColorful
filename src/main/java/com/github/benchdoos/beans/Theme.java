@@ -1,9 +1,6 @@
 package com.github.benchdoos.beans;
 
-import com.github.benchdoos.beans.components.BinaryElement;
-import com.github.benchdoos.beans.components.JTabbedPaneElement;
-import com.github.benchdoos.beans.components.JTableElement;
-import com.github.benchdoos.beans.components.JTextComponentElement;
+import com.github.benchdoos.beans.components.*;
 
 public interface Theme {
 
@@ -24,6 +21,8 @@ public interface Theme {
     JTabbedPaneElement getTabbedPaneElement();
 
     BinaryElement getButtonElement();
+
+    JProgressBarElement getProgressBarElement();
 
     int getVersion();
 

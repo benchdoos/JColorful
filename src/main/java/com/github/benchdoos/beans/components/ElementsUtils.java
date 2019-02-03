@@ -8,9 +8,17 @@ import java.awt.*;
 
 public class ElementsUtils {
     public static BinaryElement getBinary(JsonObject object, String tableHead) {
-        BinaryElement binaryElement = new BinaryElementImpl();
+        System.out.println("obj: " + object + "\n head:" + tableHead);
         final JsonElement headElement = object.get(tableHead);
+        return getBinaryElement(headElement);
+    }
 
+    public static BinaryElement getBinary(JsonObject object) {
+        return getBinaryElement(object);
+    }
+
+    private static BinaryElement getBinaryElement(JsonElement headElement) {
+        BinaryElement binaryElement = new BinaryElementImpl();
         JsonElement background = headElement.getAsJsonObject().get(ElementConstants.BACKGROUND);
         if (background != null) {
             binaryElement.setBackgroundColor(Color.decode(background.getAsString()));

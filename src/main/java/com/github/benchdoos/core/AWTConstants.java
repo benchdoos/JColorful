@@ -5,4 +5,5 @@ public interface AWTConstants {
     String J_TABBED_PANE = "JTabbedPane";
     String J_BUTTON = "JButton";
     String J_TABLE = "JTable";
+    String J_PROGRESS_BAR = "JProgressBar";
 }

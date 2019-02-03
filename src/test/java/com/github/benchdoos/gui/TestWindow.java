@@ -33,11 +33,14 @@ public class TestWindow extends JFrame {
     private JComboBox comboBox1;
     private JTree tree1;
     private JComboBox comboBox2;
+    private JProgressBar stringProgressBar;
+    private JProgressBar intermediateProgressBar;
 
     public TestWindow() {
         initData();
         initGui();
         initButtons();
+        slider1.setValue(30);
     }
 
     private void initData() {
@@ -53,6 +56,8 @@ public class TestWindow extends JFrame {
                 progressBar1.setValue(e.getValue());
                 slider1.setValue(e.getValue());
                 spinner1.setValue(e.getValue());
+                stringProgressBar.setValue(e.getValue());
+                intermediateProgressBar.setValue(e.getValue());
             }
         });
     }

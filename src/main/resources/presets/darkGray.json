@@ -19,7 +19,12 @@
     },
     {
       "objectType": "JProgressBar",
-      "background": "#333333"
+      "background": "#333333",
+      "foreground": "#444444",
+      "string": {
+        "background": "#444444",
+        "foreground": "#333333"
+      }
     },
     {
       "objectType": "JTextComponent",

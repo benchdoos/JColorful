@@ -1,15 +1,9 @@
 package com.github.benchdoos.beans;
 
-import com.github.benchdoos.beans.components.BinaryElement;
-import com.github.benchdoos.beans.components.JTabbedPaneElement;
-import com.github.benchdoos.beans.components.JTableElement;
-import com.github.benchdoos.beans.components.JTextComponentElement;
+import com.github.benchdoos.beans.components.*;
 import com.github.benchdoos.core.AWTConstants;
 import com.github.benchdoos.core.ModelConstants;
-import com.github.benchdoos.serializers.BinaryElementDeserializer;
-import com.github.benchdoos.serializers.JTabbedPaneDeserializer;
-import com.github.benchdoos.serializers.JTableDeserializer;
-import com.github.benchdoos.serializers.JTextComponentDeserializer;
+import com.github.benchdoos.serializers.*;
 import com.github.benchdoos.utils.ValidateController;
 import com.google.gson.*;
 
@@ -23,6 +17,7 @@ public class ThemeBean implements Theme {
     private JTextComponentElement textComponentElement;
     private JTabbedPaneElement tabbedPaneElement;
     private JTableElement tableElement;
+    private JProgressBarElement progressBarElement;
 
     public ThemeBean(String content) {
         this.content = content;
@@ -94,6 +89,11 @@ public class ThemeBean implements Theme {
     }
 
     @Override
+    public JProgressBarElement getProgressBarElement() {
+        return progressBarElement;
+    }
+
+    @Override
     public int getVersion() {
         return version;
     }
@@ -113,6 +113,7 @@ public class ThemeBean implements Theme {
         builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
         builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
         builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
+        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
         Gson gson = builder.create();
 
         commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
@@ -134,8 +135,13 @@ public class ThemeBean implements Theme {
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
                 tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
             }
+
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
                 tableElement = gson.fromJson(jsonElement, JTableElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_PROGRESS_BAR)) {
+                progressBarElement = gson.fromJson(jsonElement, JProgressBarElement.class);
             }
         }
     }
