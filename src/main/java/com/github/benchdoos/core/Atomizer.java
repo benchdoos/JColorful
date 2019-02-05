@@ -8,17 +8,17 @@ import javax.swing.table.JTableHeader;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
-public class Atomizer {
+class Atomizer {
     private Theme theme;
 
-    public Atomizer(Theme theme) {
+    Atomizer(Theme theme) {
         if (theme == null) {
             throw new IllegalArgumentException("Atomizer theme can not be null");
         }
         this.theme = theme;
     }
 
-    public void colorize(Component component) {
+    void colorize(Component component) {
         /*System.out.println("> " + String.format("#%02x%02x%02x",
                 color.getRed(), color.getGreen(), color.getBlue()));*/
         component.setBackground(theme.getCommonComponent().getBackgroundColor());

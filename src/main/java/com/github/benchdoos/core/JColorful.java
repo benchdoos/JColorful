@@ -42,6 +42,7 @@ public class JColorful {
 
     public JColorful setThemeBean(ThemeBean themeBean) {
         this.themeBean = themeBean;
+
         return this;
     }
 }
