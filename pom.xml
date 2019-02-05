@@ -148,6 +148,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <skip>true</skip> <!--fix an issue, when gpg does not want to sing-->
+                </configuration>
             </plugin>
 
             <plugin>
