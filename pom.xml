@@ -5,20 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.benchdoos</groupId>
-    <artifactId>jColorful</artifactId>
+    <artifactId>JColorful</artifactId>
     <version>0.1</version>
-
     <packaging>jar</packaging>
+
     <name>JColorful</name>
     <description>Library adds ability to apply themes to your Java SE application</description>
     <url>https://github.com/benchdoos/jColorful</url>
-    <developers>
-        <developer>
-            <name>Eugene Zrazhevsky</name>
-            <email>eugeny.zrazhevsky@gmail.com</email>
-            <url>https://benchdoos.github.io/</url>
-        </developer>
-    </developers>
+
+    <scm>
+        <url>https://github.com/benchdoos/jColorful</url>
+        <connection>scm:git:git@github.com:benchdoos/jcolorful.git</connection>
+        <developerConnection>scm:git:git@github.com:benchdoos/jcolorful.git</developerConnection>
+    </scm>
 
     <licenses>
         <license>
@@ -28,11 +27,14 @@
         </license>
     </licenses>
 
-    <scm>
-        <url>https://github.com/benchdoos/jColorful</url>
-        <connection>scm:git:git@github.com:benchdoos/jcolorful.git</connection>
-        <developerConnection>scm:git:git@github.com:benchdoos/jcolorful.git</developerConnection>
-    </scm>
+    <developers>
+        <developer>
+            <name>Eugene Zrazhevsky</name>
+            <email>eugeny.zrazhevsky@gmail.com</email>
+            <url>https://benchdoos.github.io/</url>
+        </developer>
+    </developers>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -77,10 +79,58 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.20.1</version>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
