@@ -11,10 +11,10 @@
 
     <name>JColorful</name>
     <description>Library adds ability to apply themes to your Java SE application</description>
-    <url>https://github.com/benchdoos/jColorful</url>
+    <url>https://github.com/benchdoos/JColorful</url>
 
     <scm>
-        <url>https://github.com/benchdoos/jColorful</url>
+        <url>https://github.com/benchdoos/JColorful</url>
         <connection>scm:git:git@github.com:benchdoos/jcolorful.git</connection>
         <developerConnection>scm:git:git@github.com:benchdoos/jcolorful.git</developerConnection>
     </scm>
