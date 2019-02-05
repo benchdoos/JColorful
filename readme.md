@@ -4,9 +4,9 @@ If you want to contribute - contact me.
 
 Code example:
 ```
-JColorful colorful = new JColorful(DefaultThemes.EXTREMELY_BLACK);
+JColorful colorful = new JColorful(DefaultThemes.EXTREMELY_BLACK); //you can use default or create own one
 TestWindow testWindow = new TestWindow();
-colorful.colorize(testWindow); // any component
+colorful.colorize(testWindow); // any Component
 testWindow.setVisible(true);
 
 ```
@@ -24,11 +24,7 @@ Simple theme example (section "common" is required):
     },
     {
       "objectType": "JButton",
-      "foreground": "#eeeeee",
-      "border": {
-        "type": "LineBorder",
-        "color": "#333333"
-      }
+      "foreground": "#eeeeee"
     },
     {
       "objectType": "JProgressBar",
@@ -37,6 +33,9 @@ Simple theme example (section "common" is required):
   ]
 }
 ```
+JSON theme file v.1 is still in development. Maybe some new features will be added to v.1.
+
+After release will be created v.2 to add some new features.
 
 Library should work like this:
 
