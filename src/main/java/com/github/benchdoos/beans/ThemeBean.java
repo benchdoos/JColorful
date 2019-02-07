@@ -45,17 +45,14 @@ public class ThemeBean implements Theme {
         setVersion(rootElement.getAsJsonPrimitive(ModelConstants.VERSION).getAsInt());
     }
 
-    @Override
     public String getAuthor() {
         return author;
     }
 
-    @Override
     public JTableElement getTableElement() {
         return tableElement;
     }
 
-    @Override
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -64,12 +61,10 @@ public class ThemeBean implements Theme {
         return this.commonComponent;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -78,27 +73,22 @@ public class ThemeBean implements Theme {
         return this.textComponentElement;
     }
 
-    @Override
     public JTabbedPaneElement getTabbedPaneElement() {
         return tabbedPaneElement;
     }
 
-    @Override
     public BinaryElement getButtonElement() {
         return buttonElement;
     }
 
-    @Override
     public JProgressBarElement getProgressBarElement() {
         return progressBarElement;
     }
 
-    @Override
     public int getVersion() {
         return version;
     }
 
-    @Override
     public void setVersion(int version) {
         this.version = version;
     }
