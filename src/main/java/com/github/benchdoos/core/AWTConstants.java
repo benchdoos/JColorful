@@ -6,4 +6,6 @@ public interface AWTConstants {
     String J_BUTTON = "JButton";
     String J_TABLE = "JTable";
     String J_PROGRESS_BAR = "JProgressBar";
+    String J_CHECKBOX = "JCheckBox";
+    String J_RADIOBUTTON = "JRadioButton";
 }

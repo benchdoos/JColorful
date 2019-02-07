@@ -18,6 +18,8 @@ public class ThemeBean implements Theme {
     private JTabbedPaneElement tabbedPaneElement;
     private JTableElement tableElement;
     private JProgressBarElement progressBarElement;
+    private BinaryElement checkBoxElement;
+    private BinaryElement radioButtonElement;
 
     public ThemeBean(String jsonContent) {
         this.content = jsonContent;
@@ -52,6 +54,13 @@ public class ThemeBean implements Theme {
                 buttonElement = gson.fromJson(jsonElement, BinaryElement.class);
             }
 
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_CHECKBOX)) {
+                checkBoxElement = gson.fromJson(jsonElement, BinaryElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_RADIOBUTTON)) {
+                radioButtonElement = gson.fromJson(jsonElement, BinaryElement.class);
+            }
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
                 tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
             }
@@ -82,6 +91,15 @@ public class ThemeBean implements Theme {
 
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public BinaryElement getCheckBoxElement() {
+        return checkBoxElement;
+    }
+
+    public BinaryElement getRadioButtonElement() {
+        return radioButtonElement;
     }
 
     public void setAuthor(String author) {

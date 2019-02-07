@@ -6,25 +6,31 @@ public interface Theme {
 
     String getAuthor();
 
-    JTableElement getTableElement();
-
     void setAuthor(String author);
 
+    BinaryElement getButtonElement();
+
     BinaryElement getCommonComponent();
+
+    BinaryElement getCheckBoxElement();
+
+    BinaryElement getRadioButtonElement();
 
     String getName();
 
     void setName(String name);
 
-    JTextComponentElement getTextComponentElement();
+    JProgressBarElement getProgressBarElement();
 
     JTabbedPaneElement getTabbedPaneElement();
 
-    BinaryElement getButtonElement();
+    JTableElement getTableElement();
 
-    JProgressBarElement getProgressBarElement();
+    JTextComponentElement getTextComponentElement();
 
     int getVersion();
 
     void setVersion(int version);
+
+
 }

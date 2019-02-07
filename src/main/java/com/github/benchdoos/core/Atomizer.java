@@ -1,6 +1,7 @@
 package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
+import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JProgressBarElement;
 import com.github.benchdoos.beans.components.JTableElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
@@ -36,14 +37,21 @@ class Atomizer {
             paintJButton((JButton) component);
         }
 
+        if (component instanceof JCheckBox) {
+            paintJCheckBox((JCheckBox) component);
+        }
+        if (component instanceof JRadioButton) {
+            paintJRadioButton((JRadioButton) component);
+        }
+
+
         if (component instanceof JProgressBar) {
             paintJProgressBar((JProgressBar) component);
         }
 
 
         if (component instanceof JCheckBox) {
-            UIManager.put("CheckBox.focus", Color.RED);
-            component.repaint();
+            paintJCheckBox((JCheckBox) component);
         }
 
         if (component instanceof JTabbedPane) {
@@ -54,6 +62,12 @@ class Atomizer {
             paintJTable((JTable) component);
         }
 
+    }
+
+    private void paintJCheckBox(JCheckBox component) {
+        final BinaryElement checkBoxElement = theme.getCheckBoxElement();
+        component.setBackground(checkBoxElement.getBackgroundColor());
+        component.setForeground(checkBoxElement.getForegroundColor());
     }
 
     void colorizeGlobal() {
@@ -96,6 +110,12 @@ class Atomizer {
             component.setContentAreaFilled(false);
             component.setOpaque(true);
         }
+    }
+
+    private void paintJRadioButton(JRadioButton component) {
+        final BinaryElement radioButtonElement = theme.getRadioButtonElement();
+        component.setBackground(radioButtonElement.getBackgroundColor());
+        component.setForeground(radioButtonElement.getForegroundColor());
     }
 
     private void paintJProgressBar(JProgressBar component) {

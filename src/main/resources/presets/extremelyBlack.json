@@ -15,6 +15,16 @@
       "foreground": "#BFBFBF"
     },
     {
+      "objectType": "JCheckBox",
+      "background": "#414141",
+      "foreground": "#BFBFBF"
+    },
+    {
+      "objectType": "JRadioButton",
+      "background": "#414141",
+      "foreground": "#BFBFBF"
+    },
+    {
       "objectType": "JProgressBar",
       "background": "#9F9F9F",
       "foreground": "#333333",

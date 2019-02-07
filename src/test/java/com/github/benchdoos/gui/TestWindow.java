@@ -37,6 +37,7 @@ public class TestWindow extends JFrame {
     private JComboBox comboBox2;
     private JProgressBar stringProgressBar;
     private JProgressBar intermediateProgressBar;
+    private JRadioButton radioButton2;
 
     TestWindow() {
         initData();
