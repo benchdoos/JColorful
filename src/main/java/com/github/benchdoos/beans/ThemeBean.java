@@ -27,9 +27,15 @@ public class ThemeBean implements Theme {
         }
 
 
+        JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
+        JsonArray array = rootElement.getAsJsonArray(ModelConstants.THEME);
+
+
+        final Gson gson = parseContent(array);
+
         fillInfo();
 
-        initTheme();
+        initTheme(array, gson);
     }
 
     private void applyTheme(JsonArray array, Gson gson) {
@@ -78,12 +84,12 @@ public class ThemeBean implements Theme {
         return author;
     }
 
-    public JTableElement getTableElement() {
-        return tableElement;
-    }
-
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public BinaryElement getButtonElement() {
+        return buttonElement;
     }
 
     public BinaryElement getCommonComponent() {
@@ -98,20 +104,20 @@ public class ThemeBean implements Theme {
         this.name = name;
     }
 
-    public JTextComponentElement getTextComponentElement() {
-        return this.textComponentElement;
+    public JProgressBarElement getProgressBarElement() {
+        return progressBarElement;
     }
 
     public JTabbedPaneElement getTabbedPaneElement() {
         return tabbedPaneElement;
     }
 
-    public BinaryElement getButtonElement() {
-        return buttonElement;
+    public JTableElement getTableElement() {
+        return tableElement;
     }
 
-    public JProgressBarElement getProgressBarElement() {
-        return progressBarElement;
+    public JTextComponentElement getTextComponentElement() {
+        return this.textComponentElement;
     }
 
     public int getVersion() {
@@ -122,12 +128,7 @@ public class ThemeBean implements Theme {
         this.version = version;
     }
 
-    private void initTheme() {
-        JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
-        JsonArray array = rootElement.getAsJsonArray(ModelConstants.THEME);
-
-
-        final Gson gson = parseContent(array);
+    private void initTheme(JsonArray array, Gson gson) {
 
         commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
 
