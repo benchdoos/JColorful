@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class TestCore {
     public static void main(String[] args) {
-        JColorful colorful = new JColorful(DefaultThemes.DARK_GRAY);
+        JColorful colorful = new JColorful(DefaultThemes.EXTREMELY_BLACK);
         try {
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
