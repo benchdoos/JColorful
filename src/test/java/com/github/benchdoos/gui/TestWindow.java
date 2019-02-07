@@ -7,7 +7,9 @@ import com.github.benchdoos.core.JColorful;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TestWindow extends JFrame {
     private Theme current = DefaultThemes.EXTREMELY_BLACK;
@@ -36,7 +38,7 @@ public class TestWindow extends JFrame {
     private JProgressBar stringProgressBar;
     private JProgressBar intermediateProgressBar;
 
-    public TestWindow() {
+    TestWindow() {
         initData();
         initGui();
         initButtons();
@@ -51,14 +53,12 @@ public class TestWindow extends JFrame {
     }
 
     private void initButtons() {
-        scrollBar1.addAdjustmentListener(new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                progressBar1.setValue(e.getValue());
-                slider1.setValue(e.getValue());
-                spinner1.setValue(e.getValue());
-                stringProgressBar.setValue(e.getValue());
-                intermediateProgressBar.setValue(e.getValue());
-            }
+        scrollBar1.addAdjustmentListener(e -> {
+            progressBar1.setValue(e.getValue());
+            slider1.setValue(e.getValue());
+            spinner1.setValue(e.getValue());
+            stringProgressBar.setValue(e.getValue());
+            intermediateProgressBar.setValue(e.getValue());
         });
     }
 
@@ -66,17 +66,9 @@ public class TestWindow extends JFrame {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+        buttonOK.addActionListener(e -> onOK());
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        buttonCancel.addActionListener(e -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -87,11 +79,8 @@ public class TestWindow extends JFrame {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         setSize(new Dimension(800,400));
 
         currentThemeLabel.setText(current.getName());

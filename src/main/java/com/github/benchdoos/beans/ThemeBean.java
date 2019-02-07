@@ -11,7 +11,7 @@ public class ThemeBean implements Theme {
     private String name;
     private String author;
     private int version;
-    private String content;
+    private final String content;
     private BinaryElement commonComponent;
     private BinaryElement buttonElement;
     private JTextComponentElement textComponentElement;

@@ -8,8 +8,8 @@ public class ValidateController {
     private final int[] SUPPORTED_JSON_THEMES_VERSIONS = new int[]{1};
 
     private boolean contains(int value) {
-        for (int i = 0; i < SUPPORTED_JSON_THEMES_VERSIONS.length; i++) {
-            if (SUPPORTED_JSON_THEMES_VERSIONS[i] == value) {
+        for (int supported_json_themes_version : SUPPORTED_JSON_THEMES_VERSIONS) {
+            if (supported_json_themes_version == value) {
                 return true;
             }
         }
@@ -41,9 +41,7 @@ public class ValidateController {
         final JsonPrimitive versionObject = rootObject.getAsJsonPrimitive("version");
 
         if (typeObject.getAsString().equalsIgnoreCase("JColorfulTheme")) {
-            if (contains(versionObject.getAsInt())) {
-                return true;
-            }
+            return contains(versionObject.getAsInt());
         }
         return false;
     }
