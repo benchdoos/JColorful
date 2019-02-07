@@ -15,11 +15,10 @@ public class TestCore {
             e.printStackTrace();
         }
         colorful.colorizeGlobal();
-        JColorful.printUIManagerKeys();
+//        JColorful.printUIManagerKeys();
 
         TestWindow testWindow = new TestWindow();
         colorful.colorize(testWindow);
-        System.out.println("COLORISING FINISHED");
         SwingUtilities.invokeLater(() -> testWindow.setVisible(true));
     }
 }

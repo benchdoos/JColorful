@@ -22,8 +22,11 @@ public class JTableManager implements Manager {
             Component editor = cellEditor.getTableCellEditorComponent(table, table.getValueAt(0, 0),
                     0 == table.getSelectedRow() && 0 == table.getSelectedColumn(), 0, 0);
             if (editor != null) {
-                editor.setBackground(tableElement.getEditor().getBackgroundColor());
-                editor.setForeground(tableElement.getEditor().getForegroundColor());
+                final BinaryElement element = tableElement.getEditor();
+                if (element != null) {
+                    editor.setBackground(element.getBackgroundColor());
+                    editor.setForeground(element.getForegroundColor());
+                }
             }
         }
     }

@@ -15,12 +15,20 @@ public class JProgressBarDeserializer implements JsonDeserializer<JProgressBarEl
 
         JProgressBarElement element = new JProgressBarElementImpl();
 
-        BinaryElement bin = ElementsUtils.getBinary(object);
-        element.setForegroundColor(bin.getForegroundColor());
-        element.setBackgroundColor(bin.getBackgroundColor());
+        try {
+            BinaryElement bin = ElementsUtils.getBinary(object);
+            element.setForegroundColor(bin.getForegroundColor());
+            element.setBackgroundColor(bin.getBackgroundColor());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BinaryElement string = ElementsUtils.getBinary(object, ElementConstants.STRING_ELEMENT);
-        element.setStringElement(string);
+        try {
+            BinaryElement string = ElementsUtils.getBinary(object, ElementConstants.STRING_ELEMENT);
+            element.setStringElement(string);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return element;
     }

@@ -16,18 +16,33 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
 
         JTableElement element = new JTableElementImpl();
 
-        BinaryElement head = ElementsUtils.getBinary(object, ElementConstants.TABLE_HEAD);
-        element.setHeader(head);
+        try {
+            BinaryElement head = ElementsUtils.getBinary(object, ElementConstants.TABLE_HEAD);
+            element.setHeader(head);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.TABLE_ROW);
-        element.setRow(row);
+        try {
+            BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.TABLE_ROW);
+            element.setRow(row);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.TABLE_SELECTED_ROW);
-        element.setSelectedRow(selectedRow);
+        try {
+            BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.TABLE_SELECTED_ROW);
+            element.setSelectedRow(selectedRow);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BinaryElement editor = ElementsUtils.getBinary(object, ElementConstants.EDITOR);
-        element.setEditor(editor);
-
+        try {
+            BinaryElement editor = ElementsUtils.getBinary(object, ElementConstants.EDITOR);
+            element.setEditor(editor);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         return element;

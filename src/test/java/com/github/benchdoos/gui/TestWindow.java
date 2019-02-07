@@ -40,12 +40,10 @@ public class TestWindow extends JFrame {
     private JRadioButton radioButton2;
 
     TestWindow() {
-        System.out.println("TEST WINDOW CREATING");
         initData();
         initGui();
         initButtons();
         slider1.setValue(50);
-        System.out.println("TEST WINDOW CREATED");
     }
 
     private void initData() {

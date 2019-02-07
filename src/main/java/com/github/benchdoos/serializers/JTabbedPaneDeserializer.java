@@ -15,11 +15,19 @@ public class JTabbedPaneDeserializer implements JsonDeserializer<JTabbedPaneElem
 
         JTabbedPaneElement element = new JTabbedPaneElementImpl();
 
-        BinaryElement tab = ElementsUtils.getBinary(object, ElementConstants.TAB);
-        element.setTab(tab);
+        try {
+            BinaryElement tab = ElementsUtils.getBinary(object, ElementConstants.TAB);
+            element.setTab(tab);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BinaryElement activeTab = ElementsUtils.getBinary(object, ElementConstants.ACTIVE_TAB);
-        element.setActiveTab(activeTab);
+        try {
+            BinaryElement activeTab = ElementsUtils.getBinary(object, ElementConstants.ACTIVE_TAB);
+            element.setActiveTab(activeTab);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return element;
     }
