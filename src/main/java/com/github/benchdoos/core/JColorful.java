@@ -5,43 +5,95 @@ import com.github.benchdoos.beans.ThemeBean;
 
 import java.awt.*;
 
+/**
+ * Main class of the library
+ */
 public class JColorful {
-    private Theme themeBean = null;
+    private Theme theme = null;
 
+    /**
+     * Class  {@code JColorful} is the main class of the JColorful library.
+     *
+     * @author Eugene Zrazhevsky
+     * @since 1.0
+     */
     public JColorful() {
     }
 
-    public JColorful(Theme themeBean) {
-        if (themeBean == null) throw new IllegalArgumentException("Theme bean can not be null");
-        this.themeBean = themeBean;
+
+    /**
+     * Class  {@code JColorful} is the main class of the JColorful library.
+     *
+     * @param theme theme for current implementation
+     * @author Eugene Zrazhevsky
+     * @since 1.0
+     */
+    public JColorful(Theme theme) {
+        if (theme == null) throw new IllegalArgumentException("Theme bean can not be null");
+        this.theme = theme;
         System.out.println("JColorful was set a Theme:"
-                + " name: " + themeBean.getName()
-                + "; by: " + themeBean.getAuthor()
-                + "; version: " + themeBean.getVersion());
+                + " name: " + theme.getName()
+                + "; by: " + theme.getAuthor()
+                + "; version: " + theme.getVersion());
     }
 
+    /**
+     * Colorizes {@link Component} by settings, that got in {@link Theme}.
+     * Method colorize <u>all</u> childes of the component recursively.
+     *
+     * @param component root component that should be drawn
+     */
+
     public void colorize(Component component) {
+        if (theme == null) throw new RuntimeException("Theme should be set.");
+
         if (component instanceof Container) {
             Container container = (Container) component;
             final Component[] components = container.getComponents();
             for (final Component coloringComponent : components) {
                 if (coloringComponent != null) {
-                    new Atomizer(themeBean).colorize(coloringComponent);
+                    new Atomizer(theme).colorize(coloringComponent);
                     colorize(coloringComponent);
                 }
             }
         } else {
-            new Atomizer(themeBean).colorize(component);
+            new Atomizer(theme).colorize(component);
         }
-
     }
 
-    public Theme getThemeBean() {
-        return themeBean;
+    /**
+     * Colorizes {@link Component} by settings, that got in {@link Theme}.
+     * Method colorize <u>only</u> the given component and <u>do not</u> go recursively.
+     *
+     * @param component root component that should be drawn
+     * @throws RuntimeException if {@link Theme }is not set
+     */
+    public void colorizeSingle(Component component) {
+        if (theme == null) throw new RuntimeException("Theme should be set.");
+
+        new Atomizer(theme).colorize(component);
     }
 
-    public JColorful setThemeBean(ThemeBean themeBean) {
-        this.themeBean = themeBean;
+    /**
+     * Gives back {@link Theme} that was set
+     *
+     * @return current {@link Theme}
+     */
+    public Theme getTheme() {
+        return theme;
+    }
+
+
+    /**
+     * Setter for {@link Theme}
+     *
+     * @param theme to set for {@code JColorful}
+     * @return {@link JColorful} itself
+     * @throws IllegalArgumentException if {@link Theme} is not set.
+     */
+    public JColorful setTheme(ThemeBean theme) {
+        if (theme == null) throw new IllegalArgumentException("Theme bean can not be null");
+        this.theme = theme;
 
         return this;
     }
