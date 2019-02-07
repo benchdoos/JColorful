@@ -28,7 +28,36 @@ public class ThemeBean implements Theme {
 
 
         fillInfo();
-        parseContent();
+
+        initTheme();
+    }
+
+    private void applyTheme(JsonArray array, Gson gson) {
+        for (int i = 1; i < array.size(); i++) {
+            final JsonElement jsonElement = array.get(i);
+            JsonObject object = (JsonObject) jsonElement;
+            final JsonElement element = object.get(ModelConstants.OBJECT_TYPE);
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TEXT_COMPONENT)) {
+                textComponentElement = gson.fromJson(jsonElement, JTextComponentElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_BUTTON)) {
+                buttonElement = gson.fromJson(jsonElement, BinaryElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
+                tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
+                tableElement = gson.fromJson(jsonElement, JTableElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_PROGRESS_BAR)) {
+                progressBarElement = gson.fromJson(jsonElement, JProgressBarElement.class);
+            }
+        }
     }
 
     @Override
@@ -93,46 +122,26 @@ public class ThemeBean implements Theme {
         this.version = version;
     }
 
-    private void parseContent() {
+    private void initTheme() {
         JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
-
         JsonArray array = rootElement.getAsJsonArray(ModelConstants.THEME);
 
+
+        final Gson gson = parseContent(array);
+
+        commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
+
+        applyTheme(array, gson);
+
+    }
+
+    private Gson parseContent(JsonArray array) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
         builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
         builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
         builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
         builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
-        Gson gson = builder.create();
-
-        commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
-
-
-        for (int i = 1; i < array.size(); i++) {
-            final JsonElement jsonElement = array.get(i);
-            JsonObject object = (JsonObject) jsonElement;
-            final JsonElement element = object.get(ModelConstants.OBJECT_TYPE);
-
-            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TEXT_COMPONENT)) {
-                textComponentElement = gson.fromJson(jsonElement, JTextComponentElement.class);
-            }
-
-            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_BUTTON)) {
-                buttonElement = gson.fromJson(jsonElement, BinaryElement.class);
-            }
-
-            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
-                tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
-            }
-
-            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
-                tableElement = gson.fromJson(jsonElement, JTableElement.class);
-            }
-
-            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_PROGRESS_BAR)) {
-                progressBarElement = gson.fromJson(jsonElement, JProgressBarElement.class);
-            }
-        }
+        return builder.create();
     }
 }
