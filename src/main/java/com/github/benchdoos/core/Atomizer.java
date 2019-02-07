@@ -84,7 +84,6 @@ class Atomizer {
         for (int i = 0; i < component.getTabCount(); i++) {
             try {
                 final Color bg = theme.getTabbedPaneElement().getTab().getBackgroundColor();
-                System.out.println("Tab: " + theme.getTabbedPaneElement());
 
                 final Color fg = theme.getTabbedPaneElement().getTab().getForegroundColor();
                 component.setOpaque(false);

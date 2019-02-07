@@ -8,7 +8,6 @@ import java.awt.*;
 
 public class ElementsUtils {
     public static BinaryElement getBinary(JsonObject object, String tableHead) {
-        System.out.println("obj: " + object + "\n head:" + tableHead);
         final JsonElement headElement = object.get(tableHead);
         return getBinaryElement(headElement);
     }

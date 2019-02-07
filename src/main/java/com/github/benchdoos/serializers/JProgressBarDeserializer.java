@@ -15,7 +15,6 @@ public class JProgressBarDeserializer implements JsonDeserializer<JProgressBarEl
 
         JProgressBarElement element = new JProgressBarElementImpl();
 
-        System.out.println("Object: " + object);
         BinaryElement bin = ElementsUtils.getBinary(object);
         element.setForegroundColor(bin.getForegroundColor());
         element.setBackgroundColor(bin.getBackgroundColor());
