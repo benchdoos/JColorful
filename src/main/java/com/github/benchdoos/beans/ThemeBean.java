@@ -31,7 +31,7 @@ public class ThemeBean implements Theme {
         JsonArray array = rootElement.getAsJsonArray(ModelConstants.THEME);
 
 
-        final Gson gson = parseContent(array);
+        final Gson gson = createGson();
 
         fillInfo();
 
@@ -136,7 +136,7 @@ public class ThemeBean implements Theme {
 
     }
 
-    private Gson parseContent(JsonArray array) {
+    private Gson createGson() {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
         builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
