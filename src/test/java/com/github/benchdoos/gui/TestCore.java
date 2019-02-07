@@ -14,6 +14,9 @@ public class TestCore {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        colorful.colorizeGlobal();
+        JColorful.printUIManagerKeys();
+
         TestWindow testWindow = new TestWindow();
         colorful.colorize(testWindow);
         testWindow.setVisible(true);

@@ -1,9 +1,11 @@
 package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
+import com.github.benchdoos.beans.components.JProgressBarElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -52,19 +54,31 @@ class Atomizer {
 
     }
 
-    private void paintJProgressBar(JProgressBar component) {
-        //found no another way to do this
-        if (!component.isIndeterminate()) {
-            component.setStringPainted(true);
-            component.setOpaque(false);
-            component.setBackground(theme.getProgressBarElement().getBackgroundColor());
-            component.setForeground(theme.getProgressBarElement().getForegroundColor());
-            UIManager.put("ProgressBar.background", theme.getProgressBarElement().getBackgroundColor());
-            UIManager.put("ProgressBar.foreground", theme.getProgressBarElement().getForegroundColor());
-            UIManager.put("ProgressBar.selectionBackground", theme.getProgressBarElement().getStringElement().getBackgroundColor());
-            UIManager.put("ProgressBar.selectionForeground", theme.getProgressBarElement().getStringElement().getForegroundColor());
-            SwingUtilities.updateComponentTreeUI(component);
+    void colorizeGlobal() {
+        System.out.println("Colorizing global for theme: " + theme);
+        colorizeGlobalJTabbedPane();
+        colorizeGlobalJProgressBar();
+    }
+
+    private void colorizeGlobalJProgressBar() {
+        final JProgressBarElement progressBarElement = theme.getProgressBarElement();
+        try {
+            UIManager.put("ProgressBar.background", progressBarElement.getStringElement().getBackgroundColor()); //does not work
+            UIManager.put("ProgressBar.foreground", progressBarElement.getStringElement().getForegroundColor()); //does not work
+
+            UIManager.put("ProgressBar.selectionBackground", new ColorUIResource(progressBarElement.getStringElement().getBackgroundColor()));
+            UIManager.put("ProgressBar.selectionForeground", new ColorUIResource(progressBarElement.getStringElement().getForegroundColor()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    private void colorizeGlobalJTabbedPane() {
+        UIManager.put("TabbedPane.background", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor()); //does not work
+        UIManager.put("TabbedPane.foreground", theme.getTabbedPaneElement().getActiveTab().getForegroundColor()); //does not work
+        UIManager.put("TabbedPane.unselectedBackground", theme.getTabbedPaneElement().getTab().getBackgroundColor()); //does not work
+        UIManager.put("TabbedPane.unselectedForeground", theme.getTabbedPaneElement().getTab().getForegroundColor()); //does not work
     }
 
     private void paintJButton(JButton component) {
@@ -77,6 +91,18 @@ class Atomizer {
         if (foregroundColor != null && backgroundColor != null) {
             component.setContentAreaFilled(false);
             component.setOpaque(true);
+        }
+    }
+
+    private void paintJProgressBar(JProgressBar component) {
+        //found no another way to do this
+        if (!component.isIndeterminate()) {
+//            component.setStringPainted(true);
+            component.setOpaque(false);
+            component.setBackground(theme.getProgressBarElement().getBackgroundColor());
+            component.setForeground(theme.getProgressBarElement().getForegroundColor());
+
+            SwingUtilities.updateComponentTreeUI(component);
         }
     }
 

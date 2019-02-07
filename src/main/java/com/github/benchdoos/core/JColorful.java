@@ -3,7 +3,12 @@ package com.github.benchdoos.core;
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.ThemeBean;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
+import static java.util.Collections.list;
 
 /**
  * Main class of the library
@@ -37,6 +42,15 @@ public class JColorful {
                 + "; version: " + theme.getVersion());
     }
 
+    public static void printUIManagerKeys() {
+        UIDefaults defaults = UIManager.getDefaults();
+        Enumeration<Object> keysEnumeration = defaults.keys();
+        ArrayList<Object> keysList = list(keysEnumeration);
+        for (Object key : keysList) {
+            System.out.println("UIManager: " + key + " - " + UIManager.get(key));
+        }
+    }
+
     /**
      * Colorizes {@link Component} by settings, that got in {@link Theme}.
      * Method colorize <u>all</u> childes of the component recursively.
@@ -62,6 +76,15 @@ public class JColorful {
     }
 
     /**
+     * Applies theme settings for global parameters.
+     * Should be called before component creation.
+     * <b>ATTENTION!</b> Applies to whole project (all components).
+     */
+    public void colorizeGlobal() {
+        new Atomizer(theme).colorizeGlobal();
+    }
+
+    /**
      * Colorizes {@link Component} by settings, that got in {@link Theme}.
      * Method colorize <u>only</u> the given component and <u>do not</u> go recursively.
      *
@@ -82,7 +105,6 @@ public class JColorful {
     public Theme getTheme() {
         return theme;
     }
-
 
     /**
      * Setter for {@link Theme}
