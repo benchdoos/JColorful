@@ -19,15 +19,15 @@ public class ThemeBean implements Theme {
     private JTableElement tableElement;
     private JProgressBarElement progressBarElement;
 
-    public ThemeBean(String content) {
-        this.content = content;
+    public ThemeBean(String jsonContent) {
+        this.content = jsonContent;
         ValidateController controller = new ValidateController();
-        if (!controller.validate(content)) {
+        if (!controller.validate(jsonContent)) {
             throw new IllegalArgumentException("JSON is not valid");
         }
 
 
-        JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
+        JsonObject rootElement = new JsonParser().parse(jsonContent).getAsJsonObject();
         JsonArray array = rootElement.getAsJsonArray(ModelConstants.THEME);
 
 
