@@ -1,5 +1,7 @@
 package com.github.benchdoos.serializers;
 
+import com.github.benchdoos.beans.components.BinaryElement;
+import com.github.benchdoos.beans.components.ElementsUtils;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 import com.github.benchdoos.beans.components.JTextComponentElementImpl;
 import com.github.benchdoos.core.ElementConstants;
@@ -14,24 +16,31 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
 
         JTextComponentElement element = new JTextComponentElementImpl();
 
-        final JsonElement background = object.get(ElementConstants.BACKGROUND);
-        if (background != null) {
-            element.setBackgroundColor(Color.decode(background.getAsString()));
+        try {
+            BinaryElement binary = ElementsUtils.getBinary(object, ElementConstants.TABLE_HEAD);
+            element.setBackgroundColor(binary.getBackgroundColor());
+            element.setForegroundColor(binary.getForegroundColor());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        final JsonElement foreground = object.get(ElementConstants.FOREGROUND);
-        if (foreground != null) {
-            element.setForegroundColor(Color.decode(foreground.getAsString()));
+
+        try {
+            final JsonElement caretColor = object.get(ElementConstants.CARET);
+            if (caretColor != null) {
+                element.setCaretColor(Color.decode(caretColor.getAsString()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        final JsonElement caretColor = object.get(ElementConstants.CARET);
-        if (caretColor != null) {
-            element.setCaretColor(Color.decode(caretColor.getAsString()));
-        }
-
-        final JsonElement selectionElement = object.get(ElementConstants.SELECTION);
-        if (selectionElement != null) {
-            element.setSelectionColor(Color.decode(selectionElement.getAsString()));
+        try {
+            final JsonElement selectionElement = object.get(ElementConstants.SELECTION);
+            if (selectionElement != null) {
+                element.setSelectionColor(Color.decode(selectionElement.getAsString()));
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
 
         return element;

@@ -5,6 +5,7 @@ import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JProgressBarElement;
 import com.github.benchdoos.beans.components.JTabbedPaneElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
+import com.github.benchdoos.managers.JTabbedPaneManager;
 import com.github.benchdoos.managers.JTableManager;
 
 import javax.swing.*;
@@ -53,7 +54,7 @@ class Atomizer {
         }
 
         if (component instanceof JTabbedPane) {
-            paintJTabbedPane((JTabbedPane) component);
+            new JTabbedPaneManager(theme).paintComponent(component);
         }
 
         if (component instanceof JTable) {
@@ -152,24 +153,6 @@ class Atomizer {
         final BinaryElement radioButtonElement = theme.getRadioButtonElement();
         colorizeBinaryElement(component, radioButtonElement);
     }
-
-    private void paintJTabbedPane(JTabbedPane component) {
-        for (int i = 0; i < component.getTabCount(); i++) {
-            try {
-                final Color bg = theme.getTabbedPaneElement().getTab().getBackgroundColor();
-
-                final Color fg = theme.getTabbedPaneElement().getTab().getForegroundColor();
-                component.setOpaque(false);
-                component.setBackgroundAt(i, bg);
-                component.setForegroundAt(i, fg);
-                component.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
-                component.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
-            } catch (Exception e) {
-                /*NOP*/
-            }
-        }
-    }
-
 
     private void paintJTextComponent(JTextComponent component) {
         final JTextComponentElement componentElement = theme.getTextComponentElement();
