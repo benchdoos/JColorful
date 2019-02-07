@@ -64,10 +64,15 @@ class Atomizer {
 
     }
 
-    private void paintJCheckBox(JCheckBox component) {
-        final BinaryElement checkBoxElement = theme.getCheckBoxElement();
-        component.setBackground(checkBoxElement.getBackgroundColor());
-        component.setForeground(checkBoxElement.getForegroundColor());
+    private void colorizeBinaryElement(Component component, BinaryElement element) {
+        if (element != null) {
+            try {
+                component.setBackground(element.getBackgroundColor());
+                component.setForeground(element.getForegroundColor());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     void colorizeGlobal() {
@@ -102,20 +107,19 @@ class Atomizer {
     private void paintJButton(JButton component) {
 
         final Color foregroundColor = theme.getButtonElement().getForegroundColor();
-        component.setForeground(foregroundColor);
         final Color backgroundColor = theme.getButtonElement().getBackgroundColor();
-        component.setBackground(backgroundColor);
 
         if (foregroundColor != null && backgroundColor != null) {
+            component.setForeground(foregroundColor);
+            component.setBackground(backgroundColor);
             component.setContentAreaFilled(false);
             component.setOpaque(true);
         }
     }
 
-    private void paintJRadioButton(JRadioButton component) {
-        final BinaryElement radioButtonElement = theme.getRadioButtonElement();
-        component.setBackground(radioButtonElement.getBackgroundColor());
-        component.setForeground(radioButtonElement.getForegroundColor());
+    private void paintJCheckBox(JCheckBox component) {
+        final BinaryElement checkBoxElement = theme.getCheckBoxElement();
+        colorizeBinaryElement(component, checkBoxElement);
     }
 
     private void paintJProgressBar(JProgressBar component) {
@@ -128,6 +132,11 @@ class Atomizer {
 
             SwingUtilities.updateComponentTreeUI(component);
         }
+    }
+
+    private void paintJRadioButton(JRadioButton component) {
+        final BinaryElement radioButtonElement = theme.getRadioButtonElement();
+        colorizeBinaryElement(component, radioButtonElement);
     }
 
     private void paintJTabbedPane(JTabbedPane component) {
