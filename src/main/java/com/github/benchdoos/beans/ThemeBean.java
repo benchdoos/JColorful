@@ -145,4 +145,13 @@ public class ThemeBean implements Theme {
         builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
         return builder.create();
     }
+
+    @Override
+    public String toString() {
+        return "ThemeBean{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", version=" + version +
+                '}';
+    }
 }
