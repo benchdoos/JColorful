@@ -8,35 +8,6 @@
       "objectType": "common",
       "background": "#333333",
       "foreground": "#eeeeee"
-    },
-    {
-      "objectType": "JButton",
-      "foreground": "#eeeeee",
-      "border": {
-        "type": "LineBorder",
-        "color": "#333333"
-      }
-    },
-    {
-      "objectType": "JProgressBar",
-      "background": "#333333",
-      "foreground": "#444444",
-      "string": {
-        "background": "#444444",
-        "foreground": "#333333"
-      }
-    },
-    {
-      "objectType": "JTextComponent",
-      "background": "#717171",
-      "foreground": "#ffffff",
-      "caret": "#ffffff"
-    },
-    {
-      "objectType": "JTextField",
-      "background": "#B3B3B3",
-      "foreground": "#000000",
-      "caret": "#000000"
     }
   ]
 }

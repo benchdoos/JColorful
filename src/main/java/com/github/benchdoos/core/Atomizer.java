@@ -3,13 +3,11 @@ package com.github.benchdoos.core;
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.JProgressBarElement;
-import com.github.benchdoos.beans.components.JTableElement;
+import com.github.benchdoos.beans.components.JTabbedPaneElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
+import com.github.benchdoos.managers.JTableManager;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellEditor;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
@@ -59,7 +57,7 @@ class Atomizer {
         }
 
         if (component instanceof JTable) {
-            paintJTable((JTable) component);
+            new JTableManager(theme).paintComponent(component);
         }
 
     }
@@ -84,11 +82,14 @@ class Atomizer {
     private void colorizeGlobalJProgressBar() {
         final JProgressBarElement progressBarElement = theme.getProgressBarElement();
         try {
-            UIManager.put("ProgressBar.background", progressBarElement.getStringElement().getBackgroundColor()); //does not work
-            UIManager.put("ProgressBar.foreground", progressBarElement.getStringElement().getForegroundColor()); //does not work
+            final BinaryElement stringElement = progressBarElement.getStringElement();
+            if (stringElement != null) {
+                UIManager.put("ProgressBar.background", stringElement.getBackgroundColor()); //does not work
+                UIManager.put("ProgressBar.foreground", stringElement.getForegroundColor()); //does not work
 
-            UIManager.put("ProgressBar.selectionBackground", new ColorUIResource(progressBarElement.getStringElement().getBackgroundColor()));
-            UIManager.put("ProgressBar.selectionForeground", new ColorUIResource(progressBarElement.getStringElement().getForegroundColor()));
+                UIManager.put("ProgressBar.selectionBackground", stringElement.getBackgroundColor());
+                UIManager.put("ProgressBar.selectionForeground", stringElement.getForegroundColor());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,22 +97,32 @@ class Atomizer {
     }
 
     private void colorizeGlobalJTabbedPane() {
-        UIManager.put("TabbedPane.background", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor()); //does not work
-        UIManager.put("TabbedPane.foreground", theme.getTabbedPaneElement().getActiveTab().getForegroundColor()); //does not work
-        UIManager.put("TabbedPane.unselectedBackground", theme.getTabbedPaneElement().getTab().getBackgroundColor()); //does not work
-        UIManager.put("TabbedPane.unselectedForeground", theme.getTabbedPaneElement().getTab().getForegroundColor()); //does not work
-        UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor()); //does not work
+        final JTabbedPaneElement tabbedPaneElement = theme.getTabbedPaneElement();
+        if (tabbedPaneElement != null) {
+            try {
+                final BinaryElement activeTab = tabbedPaneElement.getActiveTab();
+                if (activeTab != null) {
+                    UIManager.put("TabbedPane.background", activeTab.getBackgroundColor()); //does not work
+                    UIManager.put("TabbedPane.foreground", activeTab.getForegroundColor()); //does not work
+                    UIManager.put("TabbedPane.selected", activeTab.getBackgroundColor()); //does not work
+                }
+                final BinaryElement tab = tabbedPaneElement.getTab();
+                if (tab != null) {
+                    UIManager.put("TabbedPane.unselectedBackground", tab.getBackgroundColor()); //does not work
+                    UIManager.put("TabbedPane.unselectedForeground", tab.getForegroundColor()); //does not work
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     private void paintJButton(JButton component) {
 
-        final Color foregroundColor = theme.getButtonElement().getForegroundColor();
-        final Color backgroundColor = theme.getButtonElement().getBackgroundColor();
-
-        if (foregroundColor != null && backgroundColor != null) {
-            component.setForeground(foregroundColor);
-            component.setBackground(backgroundColor);
+        final BinaryElement buttonElement = theme.getButtonElement();
+        colorizeBinaryElement(component, buttonElement);
+        if (buttonElement != null) {
             component.setContentAreaFilled(false);
             component.setOpaque(true);
         }
@@ -127,8 +138,11 @@ class Atomizer {
         if (!component.isIndeterminate()) {
 //            component.setStringPainted(true);
             component.setOpaque(false);
-            component.setBackground(theme.getProgressBarElement().getBackgroundColor());
-            component.setForeground(theme.getProgressBarElement().getForegroundColor());
+            final JProgressBarElement progressBarElement = theme.getProgressBarElement();
+            if (progressBarElement != null) {
+                component.setBackground(progressBarElement.getBackgroundColor());
+                component.setForeground(progressBarElement.getForegroundColor());
+            }
 
             SwingUtilities.updateComponentTreeUI(component);
         }
@@ -156,27 +170,6 @@ class Atomizer {
         }
     }
 
-    private void paintJTable(JTable component) {
-        JTableHeader header = component.getTableHeader();
-        header.setOpaque(false);//remove look and feel
-
-        final JTableElement tableElement = theme.getTableElement();
-
-        header.setBackground(tableElement.getHeader().getBackgroundColor());
-        header.setForeground(tableElement.getHeader().getForegroundColor());
-
-        component.setSelectionBackground(tableElement.getSelectedRow().getBackgroundColor());
-        component.setSelectionForeground(tableElement.getSelectedRow().getForegroundColor());
-
-        component.setBackground(tableElement.getRow().getBackgroundColor());
-        component.setForeground(tableElement.getRow().getForegroundColor());
-
-        final TableCellEditor cellEditor = component.getCellEditor(0, 0);
-        Component c = cellEditor.getTableCellEditorComponent(component, component.getValueAt(0, 0),
-                0 == component.getSelectedRow() && 0 == component.getSelectedColumn(), 0, 0);
-        c.setBackground(tableElement.getEditor().getBackgroundColor());
-        c.setForeground(tableElement.getEditor().getForegroundColor());
-    }
 
     private void paintJTextComponent(JTextComponent component) {
         final JTextComponentElement componentElement = theme.getTextComponentElement();
