@@ -1,4 +1,4 @@
-<img src="/img/ico128.png" align="right" width="128" />
+<img src="https://raw.githubusercontent.com/benchdoos/JColorful/master/public/ico128.png" align="right" width="128" />
 
 Library in development.
 
