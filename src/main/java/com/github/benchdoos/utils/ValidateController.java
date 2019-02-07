@@ -1,6 +1,7 @@
 package com.github.benchdoos.utils;
 
 import com.github.benchdoos.beans.components.BinaryElement;
+import com.github.benchdoos.core.ModelConstants;
 import com.github.benchdoos.serializers.BinaryElementDeserializer;
 import com.google.gson.*;
 
@@ -40,7 +41,7 @@ public class ValidateController {
         final JsonPrimitive typeObject = rootObject.getAsJsonPrimitive("type");
         final JsonPrimitive versionObject = rootObject.getAsJsonPrimitive("version");
 
-        if (typeObject.getAsString().equalsIgnoreCase("JColorfulTheme")) {
+        if (typeObject.getAsString().equalsIgnoreCase(ModelConstants.THEME_TYPE)) {
             return contains(versionObject.getAsInt());
         }
         return false;
