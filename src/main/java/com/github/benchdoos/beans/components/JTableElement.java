@@ -13,4 +13,8 @@ public interface JTableElement extends ThemeElement {
     BinaryElement getSelectedRow();
 
     void setSelectedRow(BinaryElement selectedRow);
+
+    BinaryElement getEditor();
+
+    void setEditor(BinaryElement editor);
 }

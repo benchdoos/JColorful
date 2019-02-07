@@ -2,11 +2,13 @@ package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.components.JProgressBarElement;
+import com.github.benchdoos.beans.components.JTableElement;
 import com.github.benchdoos.beans.components.JTextComponentElement;
 
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellEditor;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
@@ -127,15 +129,23 @@ class Atomizer {
     private void paintJTable(JTable component) {
         JTableHeader header = component.getTableHeader();
         header.setOpaque(false);//remove look and feel
-        header.setBackground(theme.getTableElement().getHeader().getBackgroundColor());
-        header.setForeground(theme.getTableElement().getHeader().getForegroundColor());
 
-        component.setSelectionBackground(theme.getTableElement().getSelectedRow().getBackgroundColor());
-        component.setSelectionForeground(theme.getTableElement().getSelectedRow().getForegroundColor());
+        final JTableElement tableElement = theme.getTableElement();
 
-        component.setBackground(theme.getTableElement().getRow().getBackgroundColor());
-        component.setForeground(theme.getTableElement().getRow().getForegroundColor());
-        //todo add cell background color setting
+        header.setBackground(tableElement.getHeader().getBackgroundColor());
+        header.setForeground(tableElement.getHeader().getForegroundColor());
+
+        component.setSelectionBackground(tableElement.getSelectedRow().getBackgroundColor());
+        component.setSelectionForeground(tableElement.getSelectedRow().getForegroundColor());
+
+        component.setBackground(tableElement.getRow().getBackgroundColor());
+        component.setForeground(tableElement.getRow().getForegroundColor());
+
+        final TableCellEditor cellEditor = component.getCellEditor(0, 0);
+        Component c = cellEditor.getTableCellEditorComponent(component, component.getValueAt(0, 0),
+                0 == component.getSelectedRow() && 0 == component.getSelectedColumn(), 0, 0);
+        c.setBackground(tableElement.getEditor().getBackgroundColor());
+        c.setForeground(tableElement.getEditor().getForegroundColor());
     }
 
     private void paintJTextComponent(JTextComponent component) {

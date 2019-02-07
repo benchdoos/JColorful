@@ -4,6 +4,17 @@ public class JTableElementImpl implements JTableElement {
     private BinaryElement header;
     private BinaryElement selectedRow;
     private BinaryElement row;
+    private BinaryElement editor;
+
+    @Override
+    public BinaryElement getEditor() {
+        return editor;
+    }
+
+    @Override
+    public void setEditor(BinaryElement editor) {
+        this.editor = editor;
+    }
 
     @Override
     public BinaryElement getHeader() {

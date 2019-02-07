@@ -25,6 +25,10 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
         BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.TABLE_SELECTED_ROW);
         element.setSelectedRow(selectedRow);
 
+        BinaryElement editor = ElementsUtils.getBinary(object, ElementConstants.EDITOR);
+        element.setEditor(editor);
+
+
 
         return element;
     }
