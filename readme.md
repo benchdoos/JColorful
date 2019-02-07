@@ -1,3 +1,5 @@
+<img src="/img/ico128.png" align="right" width="128" />
+
 Library in development.
 
 If you want to contribute - contact me.
