@@ -81,6 +81,8 @@ class Atomizer {
         UIManager.put("TabbedPane.foreground", theme.getTabbedPaneElement().getActiveTab().getForegroundColor()); //does not work
         UIManager.put("TabbedPane.unselectedBackground", theme.getTabbedPaneElement().getTab().getBackgroundColor()); //does not work
         UIManager.put("TabbedPane.unselectedForeground", theme.getTabbedPaneElement().getTab().getForegroundColor()); //does not work
+        UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor()); //does not work
+
     }
 
     private void paintJButton(JButton component) {
@@ -119,7 +121,6 @@ class Atomizer {
                 component.setForegroundAt(i, fg);
                 component.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
                 component.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
-                UIManager.put("TabbedPane.selected", theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
             } catch (Exception e) {
                 /*NOP*/
             }
