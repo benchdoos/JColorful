@@ -2,7 +2,7 @@ package com.github.benchdoos.managers;
 
 import java.awt.*;
 
-public interface Manager<T extends Component> {
-    void paintComponent(T component);
+public interface Manager {
+    void paintComponent(Component component);
 
 }
