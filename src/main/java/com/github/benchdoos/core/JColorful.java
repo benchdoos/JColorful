@@ -14,6 +14,7 @@ import static java.util.Collections.list;
  * Main class of the library
  */
 public class JColorful {
+    //todo add annotations (what components to ignore)
     private Theme theme = null;
 
     /**
