@@ -93,7 +93,6 @@ public class ThemeBean implements Theme {
 
     private void fillInfo() {
         JsonObject rootElement = new JsonParser().parse(content).getAsJsonObject();
-        System.out.println(rootElement);
         final JsonPrimitive asJsonPrimitive = rootElement.getAsJsonPrimitive(ModelConstants.NAME);
         setAuthor(rootElement.getAsJsonPrimitive(ModelConstants.AUTHOR).getAsString());
         setName(asJsonPrimitive.getAsString());
