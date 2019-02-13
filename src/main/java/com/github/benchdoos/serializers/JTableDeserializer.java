@@ -25,21 +25,27 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
 
         try {
             BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.ROW);
-            element.setRow(row);
+            if (row != null) {
+                element.setRow(row);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
             BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.SELECTED_ROW);
-            element.setSelectedRow(selectedRow);
+            if (selectedRow != null) {
+                element.setSelectedRow(selectedRow);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
             BinaryElement editor = ElementsUtils.getBinary(object, ElementConstants.EDITOR);
-            element.setEditor(editor);
+            if (editor != null) {
+                element.setEditor(editor);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

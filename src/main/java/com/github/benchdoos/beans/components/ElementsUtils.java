@@ -17,16 +17,22 @@ public class ElementsUtils {
     }
 
     private static BinaryElement getBinaryElement(JsonElement headElement) {
-        BinaryElement binaryElement = new BinaryElementImpl();
-        JsonElement background = headElement.getAsJsonObject().get(ElementConstants.BACKGROUND);
-        if (background != null) {
-            binaryElement.setBackgroundColor(Color.decode(background.getAsString()));
-        }
+        if (headElement != null) {
+            BinaryElement binaryElement = new BinaryElementImpl();
+            final JsonObject asJsonObject = headElement.getAsJsonObject();
+            if (asJsonObject != null) {
+                JsonElement background = asJsonObject.get(ElementConstants.BACKGROUND);
+                if (background != null) {
+                    binaryElement.setBackgroundColor(Color.decode(background.getAsString()));
+                }
 
-        JsonElement foreground = headElement.getAsJsonObject().get(ElementConstants.FOREGROUND);
-        if (foreground != null) {
-            binaryElement.setForegroundColor(Color.decode(foreground.getAsString()));
+                JsonElement foreground = asJsonObject.get(ElementConstants.FOREGROUND);
+                if (foreground != null) {
+                    binaryElement.setForegroundColor(Color.decode(foreground.getAsString()));
+                }
+            }
+            return binaryElement;
         }
-        return binaryElement;
+        return null;
     }
 }
