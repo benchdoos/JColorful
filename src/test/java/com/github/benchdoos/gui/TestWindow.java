@@ -38,10 +38,11 @@ public class TestWindow extends JFrame {
     private JProgressBar stringProgressBar;
     private JProgressBar intermediateProgressBar;
     private JRadioButton radioButton2;
+    private JButton donatePaypalButton;
 
     TestWindow() {
-        initData();
         initGui();
+        initData();
         initButtons();
         slider1.setValue(50);
     }
