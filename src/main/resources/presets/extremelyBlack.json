@@ -64,7 +64,7 @@
       "objectType": "JComboBox",
       "button": {
         "background": "#333333",
-        "foreground": "#ffffff"
+        "foreground": "#000000"
       },
       "selectedRow": {
         "background": "#9B9B9B",
