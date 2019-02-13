@@ -43,6 +43,9 @@ class Atomizer {
             paintJRadioButton((JRadioButton) component);
         }
 
+        if (component instanceof JCheckBox) {
+            paintJCheckBox((JCheckBox) component);
+        }
 
         if (component instanceof JProgressBar) {
             paintJProgressBar((JProgressBar) component);
@@ -120,12 +123,12 @@ class Atomizer {
     }
 
     private void paintJButton(JButton component) {
-
+        final boolean opaque = component.isOpaque();
         final BinaryElement buttonElement = theme.getButtonElement();
         colorizeBinaryElement(component, buttonElement);
         if (buttonElement != null) {
             component.setContentAreaFilled(false);
-            component.setOpaque(true);
+            component.setOpaque(opaque);
         }
     }
 
