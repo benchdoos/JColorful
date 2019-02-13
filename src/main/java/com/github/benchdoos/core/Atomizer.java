@@ -167,7 +167,6 @@ class Atomizer {
     private void paintJProgressBar(JProgressBar component) {
         //found no another way to do this
         if (!component.isIndeterminate()) {
-//            component.setStringPainted(true);
             component.setOpaque(false);
             final JProgressBarElement progressBarElement = theme.getProgressBarElement();
             if (progressBarElement != null) {
