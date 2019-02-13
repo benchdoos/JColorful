@@ -8,4 +8,5 @@ public interface AWTConstants {
     String J_PROGRESS_BAR = "JProgressBar";
     String J_CHECKBOX = "JCheckBox";
     String J_RADIOBUTTON = "JRadioButton";
+    String J_COMBOBOX = "JComboBox";
 }

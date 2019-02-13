@@ -20,6 +20,7 @@ public class ThemeBean implements Theme {
     private JProgressBarElement progressBarElement;
     private BinaryElement checkBoxElement;
     private BinaryElement radioButtonElement;
+    private JComboBoxElement comboboxElement;
 
     public ThemeBean(String jsonContent) {
         this.content = jsonContent;
@@ -67,6 +68,10 @@ public class ThemeBean implements Theme {
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
                 tableElement = gson.fromJson(jsonElement, JTableElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_COMBOBOX)) {
+                comboboxElement = gson.fromJson(jsonElement, JComboBoxElement.class);
             }
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_PROGRESS_BAR)) {
@@ -134,6 +139,17 @@ public class ThemeBean implements Theme {
         return tableElement;
     }
 
+    private Gson createGson() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
+        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
+        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
+        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
+        builder.registerTypeAdapter(JComboBoxElement.class, new JComboBoxDeserializer());
+        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
+        return builder.create();
+    }
+
     public JTextComponentElement getTextComponentElement() {
         return this.textComponentElement;
     }
@@ -154,14 +170,9 @@ public class ThemeBean implements Theme {
 
     }
 
-    private Gson createGson() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
-        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
-        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
-        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
-        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
-        return builder.create();
+    @Override
+    public JComboBoxElement getComboBoxElement() {
+        return comboboxElement;
     }
 
     @Override

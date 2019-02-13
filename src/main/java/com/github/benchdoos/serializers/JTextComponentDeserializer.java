@@ -17,7 +17,7 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
         JTextComponentElement element = new JTextComponentElementImpl();
 
         try {
-            BinaryElement binary = ElementsUtils.getBinary(object, ElementConstants.TABLE_HEAD);
+            BinaryElement binary = ElementsUtils.getBinary(object, ElementConstants.HEAD);
             element.setBackgroundColor(binary.getBackgroundColor());
             element.setForegroundColor(binary.getForegroundColor());
         } catch (Exception e) {

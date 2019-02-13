@@ -2,23 +2,23 @@ package com.github.benchdoos.serializers;
 
 import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.ElementsUtils;
-import com.github.benchdoos.beans.components.JTableElement;
-import com.github.benchdoos.beans.components.JTableElementImpl;
+import com.github.benchdoos.beans.components.JComboBoxElement;
+import com.github.benchdoos.beans.components.JComboBoxElementImpl;
 import com.github.benchdoos.core.ElementConstants;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
 
-public class JTableDeserializer implements JsonDeserializer<JTableElement> {
+public class JComboBoxDeserializer implements JsonDeserializer<JComboBoxElement> {
     @Override
-    public JTableElement deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+    public JComboBoxElement deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject object = jsonElement.getAsJsonObject();
 
-        JTableElement element = new JTableElementImpl();
+        JComboBoxElement element = new JComboBoxElementImpl();
 
         try {
-            BinaryElement head = ElementsUtils.getBinary(object, ElementConstants.HEAD);
-            element.setHeader(head);
+            BinaryElement button = ElementsUtils.getBinary(object, ElementConstants.BUTTON);
+            element.setButton(button);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,14 +36,6 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        try {
-            BinaryElement editor = ElementsUtils.getBinary(object, ElementConstants.EDITOR);
-            element.setEditor(editor);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
 
         return element;
     }

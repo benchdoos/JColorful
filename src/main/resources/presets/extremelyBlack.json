@@ -59,6 +59,21 @@
         "background": "#E2E2E2",
         "foreground": "#000000"
       }
+    },
+    {
+      "objectType": "JComboBox",
+      "button": {
+        "background": "#333333",
+        "foreground": "#ffffff"
+      },
+      "selectedRow": {
+        "background": "#9B9B9B",
+        "foreground": "#ffffff"
+      },
+      "row": {
+        "background": "#777777",
+        "foreground": "#ffffff"
+      }
     }
   ]
 }

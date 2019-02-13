@@ -26,6 +26,8 @@ public interface Theme {
 
     JTableElement getTableElement();
 
+    JComboBoxElement getComboBoxElement();
+
     JTextComponentElement getTextComponentElement();
 
     int getVersion();

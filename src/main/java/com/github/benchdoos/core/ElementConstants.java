@@ -7,9 +7,10 @@ public interface ElementConstants {
     String SELECTION = "selection";
     String TAB = "tab";
     String ACTIVE_TAB = "activeTab";
-    String TABLE_HEAD = "head";
-    String TABLE_ROW = "row";
-    String TABLE_SELECTED_ROW = "selectedRow";
+    String HEAD = "head";
+    String ROW = "row";
+    String SELECTED_ROW = "selectedRow";
     String EDITOR = "editor";
     String STRING_ELEMENT = "string";
+    String BUTTON = "button";
 }

@@ -1,10 +1,7 @@
 package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
-import com.github.benchdoos.beans.components.BinaryElement;
-import com.github.benchdoos.beans.components.JProgressBarElement;
-import com.github.benchdoos.beans.components.JTabbedPaneElement;
-import com.github.benchdoos.beans.components.JTextComponentElement;
+import com.github.benchdoos.beans.components.*;
 import com.github.benchdoos.managers.JTabbedPaneManager;
 import com.github.benchdoos.managers.JTableManager;
 
@@ -51,9 +48,8 @@ class Atomizer {
             paintJProgressBar((JProgressBar) component);
         }
 
-
-        if (component instanceof JCheckBox) {
-            paintJCheckBox((JCheckBox) component);
+        if (component instanceof JComboBox) {
+            painJComboBox((JComboBox) component);
         }
 
         if (component instanceof JTabbedPane) {
@@ -81,6 +77,32 @@ class Atomizer {
         System.out.println("Colorizing global for theme: " + theme);
         colorizeGlobalJTabbedPane();
         colorizeGlobalJProgressBar();
+        colorizeGlobalJComboBox();
+    }
+
+    private void colorizeGlobalJComboBox() {
+          /*ComboBox.background
+            ComboBox.buttonBackground
+            ComboBox.buttonDarkShadow
+            ComboBox.buttonHighlight
+            ComboBox.buttonShadow
+            ComboBox.disabledBackground
+            ComboBox.disabledForeground
+            ComboBox.font
+            ComboBox.foreground
+            ComboBox.isEnterSelectablePopup
+            ComboBox.selectionBackground
+            ComboBox.selectionForeground
+            ComboBox.timeFactor
+            ComboBox.togglePopupText*/
+        final JComboBoxElement comboBoxElement = theme.getComboBoxElement();
+        if (comboBoxElement != null) {
+            UIManager.put("ComboBox.background", comboBoxElement.getRow().getBackgroundColor()); //works
+            UIManager.put("ComboBox.foreground", comboBoxElement.getRow().getForegroundColor()); //works
+            UIManager.put("ComboBox.selectionBackground", comboBoxElement.getSelectedRow().getBackgroundColor()); //works
+            UIManager.put("ComboBox.selectionForeground", comboBoxElement.getSelectedRow().getForegroundColor()); //works
+        }
+
     }
 
     private void colorizeGlobalJProgressBar() {
@@ -120,6 +142,44 @@ class Atomizer {
             }
         }
 
+    }
+
+    private void painJComboBox(JComboBox<?> component) {
+//        component.setOpaque(false);
+
+      /*  final ComboBoxModel<?> model = component.getModel();
+        ArrayList<Object> arrayList = new ArrayList<>();
+        for (int i = 0; i < model.getSize(); i++) {
+            arrayList.add(model.getElementAt(i));
+        }
+        JList list = new JList<>(arrayList.toArray());*/
+
+       /* final ListCellRenderer<?> renderer = component.getRenderer();
+        final Component listCellRendererComponent = renderer.getListCellRendererComponent(list, null, 0, false, false);
+        listCellRendererComponent.setBackground(Color.yellow);
+        listCellRendererComponent.setForeground(Color.red);*/
+
+        /*if(component.getRenderer() instanceof DefaultListCellRenderer){
+            final DefaultListCellRenderer renderer = (DefaultListCellRenderer) component.getRenderer();
+            renderer.setBackground(Color.blue);//works
+            renderer.setForeground(Color.red);//works
+        } else if (component.getRenderer() instanceof WindowsComboBoxUI) {
+            final WindowsComboBoxUI renderer = (WindowsComboBoxUI) component.getRenderer();
+
+           renderer.paintCurrentValue(component.getGraphics(),new Rectangle(0,20,0,0),false);
+        }*/
+
+
+
+        /* //overrides renderer... this is insane
+        component.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+                super.paint(g);
+                setBackground(Color.blue);//works
+                setForeground(Color.red);//works
+            }
+        });*/
     }
 
     private void paintJButton(JButton component) {
