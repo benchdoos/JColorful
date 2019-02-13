@@ -8,10 +8,10 @@ import com.github.benchdoos.utils.ValidateController;
 import com.google.gson.*;
 
 public class ThemeBean implements Theme {
+    private final String content;
     private String name;
     private String author;
     private int version;
-    private final String content;
     private BinaryElement commonComponent;
     private BinaryElement buttonElement;
     private JTextComponentElement textComponentElement;
@@ -22,6 +22,7 @@ public class ThemeBean implements Theme {
     private BinaryElement radioButtonElement;
     private JComboBoxElement comboboxElement;
     private JListElement listElement;
+    private JTreeElement treeElement;
 
     public ThemeBean(String jsonContent) {
         this.content = jsonContent;
@@ -80,10 +81,27 @@ public class ThemeBean implements Theme {
                 comboboxElement = gson.fromJson(jsonElement, JComboBoxElement.class);
             }
 
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TREE)) {
+                treeElement = gson.fromJson(jsonElement, JTreeElement.class);
+            }
+
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_PROGRESS_BAR)) {
                 progressBarElement = gson.fromJson(jsonElement, JProgressBarElement.class);
             }
         }
+    }
+
+    private Gson createGson() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
+        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
+        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
+        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
+        builder.registerTypeAdapter(JComboBoxElement.class, new JComboBoxDeserializer());
+        builder.registerTypeAdapter(JTreeElement.class, new JTreeDeserializer());
+        builder.registerTypeAdapter(JListElement.class, new JListDeserializer());
+        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
+        return builder.create();
     }
 
     @Override
@@ -103,27 +121,6 @@ public class ThemeBean implements Theme {
         return author;
     }
 
-    @Override
-    public BinaryElement getCheckBoxElement() {
-        return checkBoxElement;
-    }
-
-    private Gson createGson() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
-        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
-        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
-        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
-        builder.registerTypeAdapter(JComboBoxElement.class, new JComboBoxDeserializer());
-        builder.registerTypeAdapter(JListElement.class, new JListDeserializer());
-        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
-        return builder.create();
-    }
-
-    public BinaryElement getRadioButtonElement() {
-        return radioButtonElement;
-    }
-
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -132,8 +129,22 @@ public class ThemeBean implements Theme {
         return buttonElement;
     }
 
+    @Override
+    public BinaryElement getCheckBoxElement() {
+        return checkBoxElement;
+    }
+
+    @Override
+    public JComboBoxElement getComboBoxElement() {
+        return comboboxElement;
+    }
+
     public BinaryElement getCommonComponent() {
         return this.commonComponent;
+    }
+
+    public JListElement getListElement() {
+        return listElement;
     }
 
     public String getName() {
@@ -148,6 +159,10 @@ public class ThemeBean implements Theme {
         return progressBarElement;
     }
 
+    public BinaryElement getRadioButtonElement() {
+        return radioButtonElement;
+    }
+
     public JTabbedPaneElement getTabbedPaneElement() {
         return tabbedPaneElement;
     }
@@ -156,12 +171,13 @@ public class ThemeBean implements Theme {
         return tableElement;
     }
 
-    public JListElement getListElement() {
-        return listElement;
-    }
-
     public JTextComponentElement getTextComponentElement() {
         return this.textComponentElement;
+    }
+
+    @Override
+    public JTreeElement getTreeElement() {
+        return treeElement;
     }
 
     public int getVersion() {
@@ -178,11 +194,6 @@ public class ThemeBean implements Theme {
 
         applyTheme(array, gson);
 
-    }
-
-    @Override
-    public JComboBoxElement getComboBoxElement() {
-        return comboboxElement;
     }
 
     @Override

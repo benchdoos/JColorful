@@ -32,6 +32,8 @@ public interface Theme {
 
     JTextComponentElement getTextComponentElement();
 
+    JTreeElement getTreeElement();
+
     int getVersion();
 
     void setVersion(int version);

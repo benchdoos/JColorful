@@ -56,6 +56,10 @@ class Atomizer {
             painJList((JList) component);
         }
 
+        if (component instanceof JTree) {
+            paintJTree((JTree) component);
+        }
+
         if (component instanceof JTabbedPane) {
             new JTabbedPaneManager(theme).paintComponent(component);
         }
@@ -64,6 +68,14 @@ class Atomizer {
             new JTableManager(theme).paintComponent(component);
         }
 
+    }
+
+    void colorizeGlobal() {
+        System.out.println("Colorizing global for theme: " + theme);
+        colorizeGlobalJTabbedPane();
+        colorizeGlobalJProgressBar();
+        colorizeGlobalJComboBox();
+        colorizeGlobalJTree();
     }
 
     private void painJList(JList component) {
@@ -84,11 +96,18 @@ class Atomizer {
         }
     }
 
-    void colorizeGlobal() {
-        System.out.println("Colorizing global for theme: " + theme);
-        colorizeGlobalJTabbedPane();
-        colorizeGlobalJProgressBar();
-        colorizeGlobalJComboBox();
+    private void colorizeGlobalJTree() {
+        final JTreeElement treeElement = theme.getTreeElement();
+        final BinaryElement row = treeElement.getRow();
+        UIManager.put("Tree.textForeground", row.getForegroundColor());//works
+        UIManager.put("Tree.textBackground", row.getBackgroundColor());//works
+        UIManager.put("Tree.selectionForeground", treeElement.getSelectedRow().getForegroundColor());//works
+        UIManager.put("Tree.selectionBackground", treeElement.getSelectedRow().getBackgroundColor());//works
+    }
+
+    private void paintJTree(JTree component) {
+        component.setBackground(theme.getTreeElement().getBackgroundColor()); //not working
+        component.setForeground(theme.getTreeElement().getForegroundColor()); //not working
     }
 
     private void colorizeGlobalJComboBox() {

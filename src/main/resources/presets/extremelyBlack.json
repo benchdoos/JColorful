@@ -85,6 +85,19 @@
         "background": "#777777",
         "foreground": "#ffffff"
       }
+    },
+    {
+      "objectType": "JTree",
+      "background": "#777777",
+      "foreground": "#ffffff",
+      "selectedRow": {
+        "background": "#494949",
+        "foreground": "#ffffff"
+      },
+      "row": {
+        "background": "#000000",
+        "foreground": "#ffffff"
+      }
     }
   ]
 }

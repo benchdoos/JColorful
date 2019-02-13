@@ -10,4 +10,5 @@ public interface AWTConstants {
     String J_RADIOBUTTON = "JRadioButton";
     String J_COMBOBOX = "JComboBox";
     String J_LIST = "JList";
+    String J_TREE = "JTree";
 }
