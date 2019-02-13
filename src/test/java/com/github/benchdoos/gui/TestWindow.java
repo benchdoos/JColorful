@@ -1,6 +1,5 @@
 package com.github.benchdoos.gui;
 
-import com.github.benchdoos.beans.DefaultThemes;
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.core.JColorful;
 
@@ -12,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TestWindow extends JFrame {
-    private Theme current = DefaultThemes.EXTREMELY_BLACK;
+    private Theme current = JColorful.EXTREMELY_BLACK;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -90,12 +89,12 @@ public class TestWindow extends JFrame {
     }
 
     private void onOK() {
-        if (current.equals(DefaultThemes.EXTREMELY_BLACK)) {
-            current = DefaultThemes.DARK_GRAY;
-            new JColorful(DefaultThemes.DARK_GRAY).colorize(this);
+        if (current.equals(JColorful.EXTREMELY_BLACK)) {
+            current = JColorful.DARK_GRAY;
+            new JColorful(JColorful.DARK_GRAY).colorize(this);
         } else {
-            current = DefaultThemes.EXTREMELY_BLACK;
-            new JColorful(DefaultThemes.EXTREMELY_BLACK).colorize(this);
+            current = JColorful.EXTREMELY_BLACK;
+            new JColorful(JColorful.EXTREMELY_BLACK).colorize(this);
         }
 
         currentThemeLabel.setText(current.getName());

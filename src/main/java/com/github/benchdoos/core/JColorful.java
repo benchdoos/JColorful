@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Scanner;
 
 import static java.util.Collections.list;
 
@@ -15,6 +16,9 @@ import static java.util.Collections.list;
  */
 public class JColorful {
     //todo add annotations (what components to ignore)
+    public static final Theme EXTREMELY_BLACK = getTheme("/presets/extremelyBlack.json");
+    public static final Theme DARK_GRAY = getTheme("/presets/darkGray.json");
+
     private Theme theme = null;
 
     /**
@@ -119,5 +123,11 @@ public class JColorful {
         this.theme = theme;
 
         return this;
+    }
+
+    private static Theme getTheme(String path) {
+        Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
+        String content = scanner.hasNext() ? scanner.next() : "";
+        return new ThemeBean(content);
     }
 }

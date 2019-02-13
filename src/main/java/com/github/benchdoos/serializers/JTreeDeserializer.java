@@ -37,7 +37,6 @@ public class JTreeDeserializer implements JsonDeserializer<JTreeElement> {
         }
 
 
-        System.out.println("EL: " + element);
         return element;
     }
 
