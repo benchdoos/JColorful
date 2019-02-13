@@ -21,6 +21,7 @@ public class ThemeBean implements Theme {
     private BinaryElement checkBoxElement;
     private BinaryElement radioButtonElement;
     private JComboBoxElement comboboxElement;
+    private JListElement listElement;
 
     public ThemeBean(String jsonContent) {
         this.content = jsonContent;
@@ -62,8 +63,13 @@ public class ThemeBean implements Theme {
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_RADIOBUTTON)) {
                 radioButtonElement = gson.fromJson(jsonElement, BinaryElement.class);
             }
+
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABBED_PANE)) {
                 tabbedPaneElement = gson.fromJson(jsonElement, JTabbedPaneElement.class);
+            }
+
+            if (element.getAsString().equalsIgnoreCase(AWTConstants.J_LIST)) {
+                listElement = gson.fromJson(jsonElement, JListElement.class);
             }
 
             if (element.getAsString().equalsIgnoreCase(AWTConstants.J_TABLE)) {
@@ -103,6 +109,18 @@ public class ThemeBean implements Theme {
         return checkBoxElement;
     }
 
+    private Gson createGson() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
+        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
+        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
+        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
+        builder.registerTypeAdapter(JComboBoxElement.class, new JComboBoxDeserializer());
+        builder.registerTypeAdapter(JListElement.class, new JListDeserializer());
+        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
+        return builder.create();
+    }
+
     public BinaryElement getRadioButtonElement() {
         return radioButtonElement;
     }
@@ -139,15 +157,8 @@ public class ThemeBean implements Theme {
         return tableElement;
     }
 
-    private Gson createGson() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(BinaryElement.class, new BinaryElementDeserializer());
-        builder.registerTypeAdapter(JTextComponentElement.class, new JTextComponentDeserializer());
-        builder.registerTypeAdapter(JTabbedPaneElement.class, new JTabbedPaneDeserializer());
-        builder.registerTypeAdapter(JTableElement.class, new JTableDeserializer());
-        builder.registerTypeAdapter(JComboBoxElement.class, new JComboBoxDeserializer());
-        builder.registerTypeAdapter(JProgressBarElement.class, new JProgressBarDeserializer());
-        return builder.create();
+    public JListElement getListElement() {
+        return listElement;
     }
 
     public JTextComponentElement getTextComponentElement() {

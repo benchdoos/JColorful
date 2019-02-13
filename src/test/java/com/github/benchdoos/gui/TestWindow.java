@@ -45,6 +45,8 @@ public class TestWindow extends JFrame {
         initData();
         initButtons();
         slider1.setValue(50);
+        setContentPane(contentPane);
+
     }
 
     private void initData() {
@@ -65,7 +67,6 @@ public class TestWindow extends JFrame {
     }
 
     private void initGui() {
-        setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(e -> onOK());

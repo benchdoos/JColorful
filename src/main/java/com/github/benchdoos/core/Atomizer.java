@@ -52,6 +52,10 @@ class Atomizer {
             painJComboBox((JComboBox) component);
         }
 
+        if (component instanceof JList) {
+            painJList((JList) component);
+        }
+
         if (component instanceof JTabbedPane) {
             new JTabbedPaneManager(theme).paintComponent(component);
         }
@@ -60,6 +64,13 @@ class Atomizer {
             new JTableManager(theme).paintComponent(component);
         }
 
+    }
+
+    private void painJList(JList component) {
+        component.setBackground(theme.getListElement().getRow().getBackgroundColor());
+        component.setForeground(theme.getListElement().getRow().getForegroundColor());
+        component.setSelectionBackground(theme.getListElement().getSelectedRow().getBackgroundColor());
+        component.setSelectionForeground(theme.getListElement().getSelectedRow().getForegroundColor());
     }
 
     private void colorizeBinaryElement(Component component, BinaryElement element) {

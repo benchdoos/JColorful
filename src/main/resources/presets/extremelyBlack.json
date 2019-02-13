@@ -74,6 +74,17 @@
         "background": "#777777",
         "foreground": "#ffffff"
       }
+    },
+    {
+      "objectType": "JList",
+      "selectedRow": {
+        "background": "#494949",
+        "foreground": "#ffffff"
+      },
+      "row": {
+        "background": "#777777",
+        "foreground": "#ffffff"
+      }
     }
   ]
 }

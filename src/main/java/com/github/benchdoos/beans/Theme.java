@@ -10,11 +10,13 @@ public interface Theme {
 
     BinaryElement getButtonElement();
 
-    BinaryElement getCommonComponent();
-
     BinaryElement getCheckBoxElement();
 
-    BinaryElement getRadioButtonElement();
+    JComboBoxElement getComboBoxElement();
+
+    BinaryElement getCommonComponent();
+
+    JListElement getListElement();
 
     String getName();
 
@@ -22,11 +24,11 @@ public interface Theme {
 
     JProgressBarElement getProgressBarElement();
 
+    BinaryElement getRadioButtonElement();
+
     JTabbedPaneElement getTabbedPaneElement();
 
     JTableElement getTableElement();
-
-    JComboBoxElement getComboBoxElement();
 
     JTextComponentElement getTextComponentElement();
 
