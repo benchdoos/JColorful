@@ -125,7 +125,14 @@ public class JColorful {
         return this;
     }
 
-    private static Theme getTheme(String path) {
+    /**
+     * Gets {@link Theme} from json
+     *
+     * @param path path to json
+     * @return Theme from json
+     * @throws IllegalArgumentException if something is wrong //not it.
+     */
+    public static Theme getTheme(String path) {
         Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
         String content = scanner.hasNext() ? scanner.next() : "";
         return new ThemeBean(content);
