@@ -40,11 +40,11 @@ public class TestWindow extends JFrame {
     private JButton donatePaypalButton;
 
     TestWindow() {
+        setContentPane(contentPane);
         initGui();
         initData();
         initButtons();
         slider1.setValue(50);
-        setContentPane(contentPane);
 
     }
 
