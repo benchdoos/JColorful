@@ -25,7 +25,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
             BinaryElement head = ElementsUtils.getBinary(object, ElementConstants.HEAD);
             element.setHeader(head);
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for head", e);
+            log.warn("Could not get BinaryElement for head", e);
         }
 
         try {
@@ -34,7 +34,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setRow(row);
             }
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for row", e);
+            log.warn("Could not get BinaryElement for row", e);
         }
 
         try {
@@ -43,7 +43,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setSelectedRow(selectedRow);
             }
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for selected row", e);
+            log.warn("Could not get BinaryElement for selected row", e);
         }
 
         try {
@@ -52,7 +52,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setEditor(editor);
             }
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for editor", e);
+            log.warn("Could not get BinaryElement for editor", e);
         }
 
 

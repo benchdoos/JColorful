@@ -26,7 +26,7 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
             element.setBackgroundColor(binary.getBackgroundColor());
             element.setForegroundColor(binary.getForegroundColor());
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for JTextComponentElement", e);
+            log.warn("Could not get BinaryElement for JTextComponentElement", e);
         }
 
 
@@ -36,7 +36,7 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
                 element.setCaretColor(Color.decode(caretColor.getAsString()));
             }
         } catch (Exception e) {
-            log.debug("Could not get Caret color", e);
+            log.warn("Could not get Caret color", e);
         }
 
         try {
@@ -45,7 +45,7 @@ public class JTextComponentDeserializer implements JsonDeserializer<JTextCompone
                 element.setSelectionColor(Color.decode(selectionElement.getAsString()));
             }
         } catch (NumberFormatException e) {
-            log.debug("Could not get Selection color", e);
+            log.warn("Could not get Selection color", e);
         }
 
         return element;

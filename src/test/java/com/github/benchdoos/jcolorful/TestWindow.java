@@ -41,7 +41,7 @@ public class TestWindow extends JFrame {
     private JButton restoreButton;
 
     TestWindow() {
-//        setContentPane(contentPane);
+        setContentPane(contentPane);
 
         initGui();
         initData();

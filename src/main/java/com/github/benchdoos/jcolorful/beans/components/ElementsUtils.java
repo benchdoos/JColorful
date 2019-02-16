@@ -47,14 +47,14 @@ public class ElementsUtils {
             BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.ROW);
             element.setRow(row);
         } catch (Exception e) {
-            log.debug("Could not get row for object", e);
+            log.warn("Could not get row for object", e);
         }
 
         try {
             BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.SELECTED_ROW);
             element.setSelectedRow(selectedRow);
         } catch (Exception e) {
-            log.debug("Could not get selected row for object", e);
+            log.warn("Could not get selected row for object", e);
         }
         return element;
     }

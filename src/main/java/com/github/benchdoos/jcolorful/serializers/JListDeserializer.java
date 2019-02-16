@@ -22,7 +22,7 @@ public class JListDeserializer implements JsonDeserializer<JListElement> {
             element = new JListElementImpl();
             element = ((JListElement) ElementsUtils.getRowAbleElement(element, object));
         } catch (Exception e) {
-            log.debug("Could not get JListElement", e);
+            log.warn("Could not get JListElement", e);
         }
 
         return element;

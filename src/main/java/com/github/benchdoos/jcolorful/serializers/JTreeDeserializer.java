@@ -24,7 +24,7 @@ public class JTreeDeserializer implements JsonDeserializer<JTreeElement> {
             element.setBackgroundColor(binary.getBackgroundColor());
             element.setForegroundColor(binary.getForegroundColor());
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for JTree", e);
+            log.warn("Could not get BinaryElement for JTree", e);
         }
 
         element = ((JTreeElement) ElementsUtils.getRowAbleElement(element, object));

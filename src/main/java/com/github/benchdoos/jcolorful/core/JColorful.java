@@ -56,7 +56,7 @@ public class JColorful {
         log.info("Getting theme from path: {}", path);
         Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
         String content = scanner.hasNext() ? scanner.next() : "";
-        log.debug("Content for theme is: {}", content);
+        log.debug("Content for theme is: {}", content.length());
         return new ThemeImpl(content);
     }
 

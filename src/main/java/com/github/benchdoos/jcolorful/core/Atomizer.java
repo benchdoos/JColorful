@@ -81,7 +81,7 @@ class Atomizer {
                 component.setBackground(element.getBackgroundColor());
                 component.setForeground(element.getForegroundColor());
             } catch (Exception e) {
-                log.debug("Could not colorize binary element: {}", component.getClass().getName(), e);
+                log.warn("Could not colorize binary element: {}", component.getClass().getName(), e);
             }
         }
     }
@@ -104,7 +104,7 @@ class Atomizer {
                 UIManager.put("ComboBox.selectionForeground", comboBoxElement.getSelectedRow().getForegroundColor()); //works
             }
         } catch (Exception e) {
-            log.debug("Could not colorize global JComboBox", e);
+            log.warn("Could not colorize global JComboBox", e);
         }
 
     }
@@ -122,7 +122,7 @@ class Atomizer {
             }
 
         } catch (Exception e) {
-            log.debug("Could not colorize global JProgressBar", e);
+            log.warn("Could not colorize global JProgressBar", e);
         }
     }
 
@@ -141,7 +141,7 @@ class Atomizer {
                     UIManager.put("TabbedPane.unselectedForeground", tab.getForegroundColor()); //does not work
                 }
             } catch (Exception e) {
-                log.debug("Could not colorize global JTabbedPane", e);
+                log.warn("Could not colorize global JTabbedPane", e);
             }
         }
 
@@ -156,7 +156,7 @@ class Atomizer {
             UIManager.put("Tree.selectionForeground", treeElement.getSelectedRow().getForegroundColor());//works
             UIManager.put("Tree.selectionBackground", treeElement.getSelectedRow().getBackgroundColor());//works
         } catch (Exception e) {
-            log.debug("Could not colorize global JTree", e);
+            log.warn("Could not colorize global JTree", e);
         }
     }
 
@@ -176,7 +176,7 @@ class Atomizer {
             component.setSelectionBackground(theme.getListElement().getSelectedRow().getBackgroundColor());
             component.setSelectionForeground(theme.getListElement().getSelectedRow().getForegroundColor());
         } catch (Exception e) {
-            log.debug("Could not paint JList", e);
+            log.warn("Could not paint JList", e);
         }
     }
 
@@ -190,7 +190,7 @@ class Atomizer {
                 component.setOpaque(opaque);
             }
         } catch (Exception e) {
-            log.debug("Could not pain JButton", e);
+            log.warn("Could not pain JButton", e);
         }
     }
 
@@ -199,7 +199,7 @@ class Atomizer {
             final BinaryElement checkBoxElement = theme.getCheckBoxElement();
             colorizeBinaryElement(component, checkBoxElement);
         } catch (Exception e) {
-            log.debug("Could not paint JCheckBox", e);
+            log.warn("Could not paint JCheckBox", e);
         }
     }
 
@@ -217,7 +217,7 @@ class Atomizer {
                 SwingUtilities.updateComponentTreeUI(component);
             }
         } catch (Exception e) {
-            log.debug("Could not pain JProgressBar", e);
+            log.warn("Could not pain JProgressBar", e);
         }
     }
 
@@ -226,7 +226,7 @@ class Atomizer {
             final BinaryElement radioButtonElement = theme.getRadioButtonElement();
             colorizeBinaryElement(component, radioButtonElement);
         } catch (Exception e) {
-            log.debug("Could not paint JRadioButton", e);
+            log.warn("Could not paint JRadioButton", e);
         }
     }
 
@@ -240,7 +240,7 @@ class Atomizer {
                 component.setSelectionColor(componentElement.getSelectionColor());
             }
         } catch (Exception e) {
-            log.debug("Could not paint JTextComponent", e);
+            log.warn("Could not paint JTextComponent", e);
         }
     }
 
@@ -249,7 +249,7 @@ class Atomizer {
             component.setBackground(theme.getTreeElement().getBackgroundColor()); //not working
             component.setForeground(theme.getTreeElement().getForegroundColor()); //not working
         } catch (Exception e) {
-            log.debug("Could not paint JTree", e);
+            log.warn("Could not paint JTree", e);
         }
     }
 }

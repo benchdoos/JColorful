@@ -24,14 +24,14 @@ public class JTabbedPaneDeserializer implements JsonDeserializer<JTabbedPaneElem
             BinaryElement tab = ElementsUtils.getBinary(object, ElementConstants.TAB);
             element.setTab(tab);
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for tab", e);
+            log.warn("Could not get BinaryElement for tab", e);
         }
 
         try {
             BinaryElement activeTab = ElementsUtils.getBinary(object, ElementConstants.ACTIVE_TAB);
             element.setActiveTab(activeTab);
         } catch (Exception e) {
-            log.debug("Could not get BinaryElement for active tab", e);
+            log.warn("Could not get BinaryElement for active tab", e);
         }
 
         return element;

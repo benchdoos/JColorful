@@ -1,11 +1,15 @@
 package com.github.benchdoos.jcolorful.managers;
 
 import com.github.benchdoos.jcolorful.beans.Theme;
+import com.github.benchdoos.jcolorful.utils.Logging;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class JTabbedPaneManager implements Manager {
+    private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
     private Theme theme;
 
     public JTabbedPaneManager(Theme theme) {
@@ -26,14 +30,9 @@ public class JTabbedPaneManager implements Manager {
                     tabbedPane.setBackgroundAt(i, bg);
                     tabbedPane.setForegroundAt(i, fg);
                 } catch (Exception e) {
-                    /*NOP*/
+                    log.warn("Could not get colors for JTabbedPaneElement", e);
+
                 }
-            }
-            try {
-                tabbedPane.setBackground(theme.getTabbedPaneElement().getActiveTab().getBackgroundColor());
-                tabbedPane.setForeground(theme.getTabbedPaneElement().getActiveTab().getForegroundColor());
-            } catch (Exception e) {
-                /*NOP*/
             }
         }
     }

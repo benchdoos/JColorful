@@ -25,14 +25,14 @@ public class JProgressBarDeserializer implements JsonDeserializer<JProgressBarEl
             element.setForegroundColor(bin.getForegroundColor());
             element.setBackgroundColor(bin.getBackgroundColor());
         } catch (Exception e) {
-            log.debug("Can not create BinaryElement for JProgressBarElement", e);
+            log.warn("Can not create BinaryElement for JProgressBarElement", e);
         }
 
         try {
             BinaryElement string = ElementsUtils.getBinary(object, ElementConstants.STRING_ELEMENT);
             element.setStringElement(string);
         } catch (Exception e) {
-            log.debug("Can not create BinaryElement for StringElement", e);
+            log.warn("Can not create BinaryElement for StringElement", e);
         }
 
         return element;
