@@ -1,7 +1,5 @@
 <img src="https://raw.githubusercontent.com/benchdoos/JColorful/master/public/ico128.png" align="right" width="128" />
 
-Library in development.
-
 If you want to contribute - contact me.
 
 To import to a maven project add to `dependencies` section:
@@ -16,7 +14,7 @@ To import to a maven project add to `dependencies` section:
 
 Code example:
 ```
-JColorful colorful = new JColorful(DefaultThemes.EXTREMELY_BLACK); //you can use default or create own one
+JColorful colorful = new JColorful(JColorful.EXTREMELY_BLACK); //you can use default or create own one
 TestWindow testWindow = new TestWindow();
 colorful.colorize(testWindow); // any Component
 testWindow.setVisible(true);
@@ -36,18 +34,21 @@ Simple theme example (section "common" is required):
     },
     {
       "objectType": "JButton",
-      "foreground": "#eeeeee"
+      "background": "#414141",
+      "foreground": "#BFBFBF"
     },
     {
-      "objectType": "JProgressBar",
-      "background": "#333333"
-    }
+      "objectType": "JTextComponent",
+      "background": "#333333",
+      "foreground": "#ffffff",
+      "caret": "#ffffff",
+      "selection": "#9F9F9F"
+     }
   ]
 }
 ```
-JSON theme file v.1 is still in development. Maybe some new features will be added to v.1.
 
-After release will be created v.2 to add some new features.
+**For more information visit [wiki](https://github.com/benchdoos/JColorful/wiki)**
 
 Library should work like this:
 
