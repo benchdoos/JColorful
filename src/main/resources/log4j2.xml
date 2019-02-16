@@ -19,8 +19,8 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d %p %C{1.}:%L [%t] - %msg%n" charset="UTF-8"/>
         </Console>
-        <RollingFile name="Debug" fileName="${java.io.tmpdir}/JColorful-debug.log"
-                     filePattern="${sys:com.github.benchdoos.weblocopener.log.folder}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="Debug" fileName="${sys:java.io.tmpdir}/JColorful-debug.log"
+                     filePattern="${sys:java.io.tmpdir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout header="${java:runtime} - ${java:vm} - ${java:os}" charset="UTF-8">
                 <pattern>%d %p %C{1.}:%L [%t] - %msg%n</pattern>
             </PatternLayout>
@@ -30,8 +30,8 @@
             <DefaultRolloverStrategy max="1"/>
         </RollingFile>
 
-        <RollingFile name="Important" fileName="${java.io.tmpdir}/JColorful-info.log"
-                     filePattern="${sys:com.github.benchdoos.weblocopener.log.folder}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="Important" fileName="${sys:java.io.tmpdir}/JColorful-info.log"
+                     filePattern="${sys:java.io.tmpdir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout header="${java:runtime} - ${java:vm} - ${java:os}" charset="UTF-8">
                 <pattern>%d %p %C{1.}:%L [%t] - %msg%n</pattern>
             </PatternLayout>
@@ -43,8 +43,6 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.github.benchdoos.weblocopener.logger" level="trace" additivity="true"/>
-
         <Root level="Debug">
             <AppenderRef ref="Console" level="info"/>
             <appender-ref ref="Debug" level="debug"/>
