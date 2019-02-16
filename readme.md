@@ -4,6 +4,16 @@ Library in development.
 
 If you want to contribute - contact me.
 
+To import to a maven project add to `dependencies` section:
+
+```
+<dependency>
+  <groupId>com.github.benchdoos</groupId>
+  <artifactId>JColorful</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 Code example:
 ```
 JColorful colorful = new JColorful(DefaultThemes.EXTREMELY_BLACK); //you can use default or create own one
