@@ -4,12 +4,16 @@ import com.github.benchdoos.beans.components.BinaryElement;
 import com.github.benchdoos.beans.components.ElementsUtils;
 import com.github.benchdoos.beans.components.JTreeElement;
 import com.github.benchdoos.beans.components.JTreeElementImpl;
-import com.github.benchdoos.core.ElementConstants;
+import com.github.benchdoos.utils.Logging;
 import com.google.gson.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Type;
 
 public class JTreeDeserializer implements JsonDeserializer<JTreeElement> {
+    private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
+
     @Override
     public JTreeElement deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject object = jsonElement.getAsJsonObject();
@@ -17,26 +21,13 @@ public class JTreeDeserializer implements JsonDeserializer<JTreeElement> {
         JTreeElement element = new JTreeElementImpl();
         try {
             BinaryElement binary = ElementsUtils.getBinary(object);
-            element.setRow(binary);
+            element.setBackgroundColor(binary.getBackgroundColor());
+            element.setForegroundColor(binary.getForegroundColor());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Could not get BinaryElement for JTree", e);
         }
 
-        try {
-            BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.ROW);
-            element.setRow(row);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.SELECTED_ROW);
-            element.setSelectedRow(selectedRow);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        element = ((JTreeElement) ElementsUtils.getRowAbleElement(element, object));
         return element;
     }
 

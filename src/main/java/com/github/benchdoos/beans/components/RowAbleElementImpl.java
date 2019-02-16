@@ -1,15 +1,15 @@
 package com.github.benchdoos.beans.components;
 
-public class JListElementImpl implements JListElement, RowAbleElement {
+public class RowAbleElementImpl implements RowAbleElement {
     private BinaryElement row;
     private BinaryElement selectedRow;
 
-    public JListElementImpl(BinaryElement row, BinaryElement selectedRow) {
+    public RowAbleElementImpl(BinaryElement row, BinaryElement selectedRow) {
         this.row = row;
         this.selectedRow = selectedRow;
     }
 
-    public JListElementImpl() {
+    public RowAbleElementImpl() {
     }
 
     @Override
@@ -17,7 +17,6 @@ public class JListElementImpl implements JListElement, RowAbleElement {
         return row;
     }
 
-    @Override
     public void setRow(BinaryElement row) {
         this.row = row;
     }
@@ -27,7 +26,6 @@ public class JListElementImpl implements JListElement, RowAbleElement {
         return selectedRow;
     }
 
-    @Override
     public void setSelectedRow(BinaryElement selectedRow) {
         this.selectedRow = selectedRow;
     }

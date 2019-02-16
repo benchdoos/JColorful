@@ -23,19 +23,7 @@ public class JComboBoxDeserializer implements JsonDeserializer<JComboBoxElement>
             e.printStackTrace();
         }
 
-        try {
-            BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.ROW);
-            element.setRow(row);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.SELECTED_ROW);
-            element.setSelectedRow(selectedRow);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        element = (JComboBoxElement) ElementsUtils.getRowAbleElement(element, object);
 
         return element;
     }

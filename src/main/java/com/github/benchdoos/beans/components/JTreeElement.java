@@ -1,6 +1,6 @@
 package com.github.benchdoos.beans.components;
 
-public interface JTreeElement extends ThemeElement, BinaryElement {
+public interface JTreeElement extends ThemeElement, RowAbleElement, BinaryElement {
     BinaryElement getRow();
 
     void setRow(BinaryElement row);

@@ -1,12 +1,17 @@
 package com.github.benchdoos.beans.components;
 
 import com.github.benchdoos.core.ElementConstants;
+import com.github.benchdoos.utils.Logging;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 
 public class ElementsUtils {
+    private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
+
     public static BinaryElement getBinary(JsonObject object, String tableHead) {
         final JsonElement headElement = object.get(tableHead);
         return getBinaryElement(headElement);
@@ -34,5 +39,35 @@ public class ElementsUtils {
             return binaryElement;
         }
         return null;
+    }
+
+    public static RowAbleElement getRowAbleElement(JsonObject object) {
+        RowAbleElement element = new RowAbleElementImpl();
+        try {
+            BinaryElement row = ElementsUtils.getBinary(object, ElementConstants.ROW);
+            element.setRow(row);
+        } catch (Exception e) {
+            log.debug("Could not get row for object", e);
+        }
+
+        try {
+            BinaryElement selectedRow = ElementsUtils.getBinary(object, ElementConstants.SELECTED_ROW);
+            element.setSelectedRow(selectedRow);
+        } catch (Exception e) {
+            log.debug("Could not get selected row for object", e);
+        }
+        return element;
+    }
+
+    public static Object getRowAbleElement(Object element, JsonObject jsonObject) {
+        if (element instanceof RowAbleElement) {
+            RowAbleElement ableElement = ((RowAbleElement) element);
+            final RowAbleElement rowAbleElement = ElementsUtils.getRowAbleElement(jsonObject);
+            if (rowAbleElement != null) {
+                ableElement.setRow(rowAbleElement.getRow());
+                ableElement.setSelectedRow(rowAbleElement.getSelectedRow());
+            }
+            return ableElement;
+        } else return element;
     }
 }

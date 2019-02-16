@@ -1,11 +1,6 @@
 package com.github.benchdoos.beans.components;
 
-public interface JComboBoxElement extends RowAbleElement, ThemeElement {
-
-    BinaryElement getButton();
-
-    void setButton(BinaryElement header);
-
+public interface RowAbleElement {
     BinaryElement getRow();
 
     void setRow(BinaryElement row);
@@ -13,4 +8,5 @@ public interface JComboBoxElement extends RowAbleElement, ThemeElement {
     BinaryElement getSelectedRow();
 
     void setSelectedRow(BinaryElement selectedRow);
+
 }

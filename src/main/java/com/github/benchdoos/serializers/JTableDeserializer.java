@@ -5,11 +5,16 @@ import com.github.benchdoos.beans.components.ElementsUtils;
 import com.github.benchdoos.beans.components.JTableElement;
 import com.github.benchdoos.beans.components.JTableElementImpl;
 import com.github.benchdoos.core.ElementConstants;
+import com.github.benchdoos.utils.Logging;
 import com.google.gson.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Type;
 
 public class JTableDeserializer implements JsonDeserializer<JTableElement> {
+    private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
+
     @Override
     public JTableElement deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject object = jsonElement.getAsJsonObject();
@@ -20,7 +25,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
             BinaryElement head = ElementsUtils.getBinary(object, ElementConstants.HEAD);
             element.setHeader(head);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Could not get BinaryElement for head", e);
         }
 
         try {
@@ -29,7 +34,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setRow(row);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Could not get BinaryElement for row", e);
         }
 
         try {
@@ -38,7 +43,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setSelectedRow(selectedRow);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Could not get BinaryElement for selected row", e);
         }
 
         try {
@@ -47,7 +52,7 @@ public class JTableDeserializer implements JsonDeserializer<JTableElement> {
                 element.setEditor(editor);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Could not get BinaryElement for editor", e);
         }
 
 
