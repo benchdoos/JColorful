@@ -1,7 +1,7 @@
 package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
-import com.github.benchdoos.beans.ThemeBean;
+import com.github.benchdoos.beans.ThemeImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -112,20 +112,6 @@ public class JColorful {
     }
 
     /**
-     * Setter for {@link Theme}
-     *
-     * @param theme to set for {@code JColorful}
-     * @return {@link JColorful} itself
-     * @throws IllegalArgumentException if {@link Theme} is not set.
-     */
-    public JColorful setTheme(ThemeBean theme) {
-        if (theme == null) throw new IllegalArgumentException("Theme bean can not be null");
-        this.theme = theme;
-
-        return this;
-    }
-
-    /**
      * Gets {@link Theme} from json
      *
      * @param path path to json
@@ -135,6 +121,20 @@ public class JColorful {
     public static Theme getTheme(String path) {
         Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
         String content = scanner.hasNext() ? scanner.next() : "";
-        return new ThemeBean(content);
+        return new ThemeImpl(content);
+    }
+
+    /**
+     * Setter for {@link Theme}
+     *
+     * @param theme to set for {@code JColorful}
+     * @return {@link JColorful} itself
+     * @throws IllegalArgumentException if {@link Theme} is not set.
+     */
+    public JColorful setTheme(Theme theme) {
+        if (theme == null) throw new IllegalArgumentException("Theme can not be null");
+        this.theme = theme;
+
+        return this;
     }
 }

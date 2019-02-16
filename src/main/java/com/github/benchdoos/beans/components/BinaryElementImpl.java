@@ -6,6 +6,14 @@ public class BinaryElementImpl implements BinaryElement {
     private Color backgroundColor;
     private Color foregroundColor;
 
+    public BinaryElementImpl() {
+    }
+
+    public BinaryElementImpl(Color backgroundColor, Color foregroundColor) {
+        this.backgroundColor = backgroundColor;
+        this.foregroundColor = foregroundColor;
+    }
+
     public Color getBackgroundColor() {
         return this.backgroundColor;
     }

@@ -2,9 +2,12 @@ package com.github.benchdoos.managers;
 
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.components.BinaryElement;
+import com.github.benchdoos.beans.components.BinaryElementImpl;
 import com.github.benchdoos.beans.components.JTableElement;
+import com.github.benchdoos.beans.components.JTableElementImpl;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import java.awt.*;
@@ -14,6 +17,29 @@ public class JTableManager implements Manager {
 
     public JTableManager(Theme theme) {
         this.theme = theme;
+    }
+
+    public JTableElement getDefaultJTableElement() {
+        JTable jTable = new JTable();
+        DefaultTableModel model = new DefaultTableModel(new String[][]{new String[]{"hello", "hello"}}, new String[]{"1", "2"});
+        jTable.setModel(model);
+
+
+        final JTableHeader tableHeader = jTable.getTableHeader();
+        BinaryElement header = new BinaryElementImpl(tableHeader.getBackground(), tableHeader.getForeground());
+
+        BinaryElement selectedRow = new BinaryElementImpl(jTable.getSelectionBackground(), jTable.getSelectionForeground());
+
+        BinaryElement row = new BinaryElementImpl(jTable.getBackground(), jTable.getForeground());
+
+        BinaryElement editor = new BinaryElementImpl();
+        Component editorComponent = jTable.getCellEditor(0, 0).getTableCellEditorComponent(jTable, jTable.getValueAt(0, 0),
+                0 == jTable.getSelectedRow() && 0 == jTable.getSelectedColumn(), 0, 0);
+        if (editorComponent != null) {
+            editor.setBackgroundColor(editorComponent.getBackground());
+            editor.setForegroundColor(editorComponent.getForeground());
+        }
+        return new JTableElementImpl(header, selectedRow, row, editor);
     }
 
     private void paintCellEditor(JTable table, JTableElement tableElement) {

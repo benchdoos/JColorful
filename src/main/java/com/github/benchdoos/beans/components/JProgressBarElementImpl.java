@@ -7,6 +7,15 @@ public class JProgressBarElementImpl implements JProgressBarElement {
     private Color foregroundColor;
     private BinaryElement stringElement;
 
+    public JProgressBarElementImpl(Color backgroundColor, Color foregroundColor, BinaryElement stringElement) {
+        this.backgroundColor = backgroundColor;
+        this.foregroundColor = foregroundColor;
+        this.stringElement = stringElement;
+    }
+
+    public JProgressBarElementImpl() {
+    }
+
     @Override
     public Color getBackgroundColor() {
         return this.backgroundColor;

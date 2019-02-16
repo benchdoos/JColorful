@@ -38,14 +38,15 @@ public class TestWindow extends JFrame {
     private JProgressBar intermediateProgressBar;
     private JRadioButton radioButton2;
     private JButton donatePaypalButton;
+    private JButton restoreButton;
 
     TestWindow() {
-        setContentPane(contentPane);
         initGui();
         initData();
         initButtons();
         slider1.setValue(50);
 
+        setContentPane(contentPane);
     }
 
     private void initData() {
@@ -68,6 +69,8 @@ public class TestWindow extends JFrame {
     private void initGui() {
         getRootPane().setDefaultButton(buttonOK);
 
+        restoreButton.addActionListener(e -> onRestore());
+
         buttonOK.addActionListener(e -> onOK());
 
         buttonCancel.addActionListener(e -> onCancel());
@@ -86,6 +89,10 @@ public class TestWindow extends JFrame {
         setSize(new Dimension(800,400));
 
         currentThemeLabel.setText(current.getName());
+    }
+
+    private void onRestore() {
+        new JColorful(TestCore.defaultWindowsTheme).colorize(this);
     }
 
     private void onOK() {

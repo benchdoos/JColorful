@@ -4,6 +4,14 @@ public class JTabbedPaneElementImpl implements JTabbedPaneElement {
     private BinaryElement tab;
     private BinaryElement activeTab;
 
+    public JTabbedPaneElementImpl() {
+    }
+
+    public JTabbedPaneElementImpl(BinaryElement tab, BinaryElement activeTab) {
+        this.tab = tab;
+        this.activeTab = activeTab;
+    }
+
     public BinaryElement getActiveTab() {
         return activeTab;
     }

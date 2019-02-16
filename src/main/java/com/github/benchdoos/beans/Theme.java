@@ -38,5 +38,13 @@ public interface Theme {
 
     void setVersion(int version);
 
+    /**
+     * Inits default colors, should used once and saved somewhere.
+     * Should create theme for default colors.
+     *
+     * @return Theme with default values if not UIManager used before.
+     */
+    Theme initDefaults();
+
 
 }

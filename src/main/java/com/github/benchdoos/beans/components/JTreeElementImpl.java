@@ -8,6 +8,16 @@ public class JTreeElementImpl implements JTreeElement {
     private BinaryElement row;
     private BinaryElement selectedRow;
 
+    public JTreeElementImpl(Color backgroundColor, Color foregroundColor, BinaryElement row, BinaryElement selectedRow) {
+        this.backgroundColor = backgroundColor;
+        this.foregroundColor = foregroundColor;
+        this.row = row;
+        this.selectedRow = selectedRow;
+    }
+
+    public JTreeElementImpl() {
+    }
+
     @Override
     public Color getBackgroundColor() {
         return backgroundColor;

@@ -3,12 +3,15 @@ package com.github.benchdoos.beans;
 import com.github.benchdoos.beans.components.*;
 import com.github.benchdoos.core.AWTConstants;
 import com.github.benchdoos.core.ModelConstants;
+import com.github.benchdoos.managers.JTableManager;
 import com.github.benchdoos.serializers.*;
 import com.github.benchdoos.utils.ValidateController;
 import com.google.gson.*;
 
-public class ThemeBean implements Theme {
-    private final String content;
+import javax.swing.*;
+
+public class ThemeImpl implements Theme {
+    private String content;
     private String name;
     private String author;
     private int version;
@@ -24,7 +27,7 @@ public class ThemeBean implements Theme {
     private JListElement listElement;
     private JTreeElement treeElement;
 
-    public ThemeBean(String jsonContent) {
+    public ThemeImpl(String jsonContent) {
         this.content = jsonContent;
         ValidateController controller = new ValidateController();
         if (!controller.validate(jsonContent)) {
@@ -41,6 +44,9 @@ public class ThemeBean implements Theme {
         fillInfo();
 
         initTheme(array, gson);
+    }
+
+    public ThemeImpl() {
     }
 
     private void applyTheme(JsonArray array, Gson gson) {
@@ -188,6 +194,123 @@ public class ThemeBean implements Theme {
         this.version = version;
     }
 
+    private BinaryElement initDefaultButtonElement() {
+        final JButton jButton = new JButton();
+        return new BinaryElementImpl(jButton.getBackground(), jButton.getForeground());
+    }
+
+    private BinaryElement initDefaultCheckBoxElement() {
+        final JCheckBox jCheckBox = new JCheckBox();
+        return new BinaryElementImpl(jCheckBox.getBackground(), jCheckBox.getForeground());
+    }
+
+    private JComboBoxElement initDefaultComboBoxElement() {
+        JComboBox jComboBox = new JComboBox();
+
+        BinaryElement button = new BinaryElementImpl(jComboBox.getBackground(), jComboBox.getForeground());
+
+        BinaryElement selectedRow = new BinaryElementImpl();
+        selectedRow.setBackgroundColor(UIManager.getColor("ComboBox.selectionBackground")); //works
+        selectedRow.setForegroundColor(UIManager.getColor("ComboBox.selectionForeground")); //works
+
+
+        BinaryElement row = new BinaryElementImpl();
+        row.setBackgroundColor(UIManager.getColor("ComboBox.background")); //works
+        row.setForegroundColor(UIManager.getColor("ComboBox.foreground")); //works
+
+        return new JComboBoxElementImpl(button, selectedRow, row);
+    }
+
+    private BinaryElement initDefaultCommonComponent() {
+        final JPanel jPanel = new JPanel();
+        return new BinaryElementImpl(jPanel.getBackground(), jPanel.getForeground());
+    }
+
+    private JTreeElement initDefaultJTreeElement() {
+        JTree jTree = new JTree();
+
+
+        BinaryElement row = new BinaryElementImpl(
+                UIManager.getColor("Tree.textBackground"),
+                UIManager.getColor("Tree.textForeground"));
+
+        BinaryElement selectedRow = new BinaryElementImpl(
+                UIManager.getColor("Tree.selectionForeground"),
+                UIManager.getColor("Tree.selectionBackground"));
+
+
+        return new JTreeElementImpl(jTree.getBackground(), jTree.getForeground(), row, selectedRow);
+    }
+
+    private JListElement initDefaultListElement() {
+        JList jList = new JList();
+        return new JListElementImpl(
+                new BinaryElementImpl(jList.getBackground(), jList.getForeground()),
+                new BinaryElementImpl(jList.getSelectionBackground(), jList.getForeground()));
+    }
+
+    private JProgressBarElement initDefaultProgressBarElement() {
+        JProgressBar progressBar = new JProgressBar();
+        final BinaryElement stringElement = new BinaryElementImpl();
+        stringElement.setBackgroundColor(UIManager.getColor("ProgressBar.selectionBackground"));
+        stringElement.setForegroundColor(UIManager.getColor("ProgressBar.selectionForeground"));
+
+        return new JProgressBarElementImpl(progressBar.getBackground(), progressBar.getForeground(), stringElement);
+    }
+
+    private BinaryElement initDefaultRadioButtonElement() {
+        final JRadioButton jRadioButton = new JRadioButton();
+        return new BinaryElementImpl(jRadioButton.getBackground(), jRadioButton.getForeground());
+    }
+
+    private JTabbedPaneElement initDefaultTabbedPaneElement() {
+        final BinaryElementImpl tab = new BinaryElementImpl(
+                UIManager.getColor("TabbedPane.unselectedBackground"),
+                UIManager.getColor("TabbedPane.unselectedForeground"));
+        final BinaryElementImpl activeTab = new BinaryElementImpl(
+                UIManager.getColor("TabbedPane.background"),
+                UIManager.getColor("TabbedPane.foreground"));
+        return new JTabbedPaneElementImpl(tab, activeTab);
+    }
+
+    private JTableElement initDefaultTableElement() {
+        return new JTableManager(this).getDefaultJTableElement();
+    }
+
+    private JTextComponentElement initDefaultTextComponentElement() {
+        final JTextField jTextField = new JTextField();
+        return new JTextComponentElementImpl(
+                jTextField.getBackground(), jTextField.getForeground(),
+                jTextField.getCaretColor(), jTextField.getSelectionColor());
+    }
+
+    @Override
+    public Theme initDefaults() {
+        commonComponent = initDefaultCommonComponent();
+
+        buttonElement = initDefaultButtonElement();
+
+        textComponentElement = initDefaultTextComponentElement();
+
+        tabbedPaneElement = initDefaultTabbedPaneElement();
+
+        tableElement = initDefaultTableElement();
+
+        progressBarElement = initDefaultProgressBarElement();
+
+        checkBoxElement = initDefaultCheckBoxElement();
+
+        radioButtonElement = initDefaultRadioButtonElement();
+
+        comboboxElement = initDefaultComboBoxElement();
+
+        listElement = initDefaultListElement();
+
+        treeElement = initDefaultJTreeElement();
+
+        return this;
+    }
+
     private void initTheme(JsonArray array, Gson gson) {
 
         commonComponent = gson.fromJson(array.get(0), BinaryElement.class);
@@ -198,7 +321,7 @@ public class ThemeBean implements Theme {
 
     @Override
     public String toString() {
-        return "ThemeBean{" +
+        return "ThemeImpl{" +
                 "name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", version=" + version +

@@ -6,6 +6,15 @@ public class JComboBoxElementImpl implements JComboBoxElement {
     private BinaryElement selectedRow;
     private BinaryElement row;
 
+    public JComboBoxElementImpl(BinaryElement button, BinaryElement selectedRow, BinaryElement row) {
+        this.button = button;
+        this.selectedRow = selectedRow;
+        this.row = row;
+    }
+
+    public JComboBoxElementImpl() {
+    }
+
     @Override
     public BinaryElement getButton() {
         return button;

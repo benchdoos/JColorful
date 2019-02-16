@@ -3,11 +3,20 @@ package com.github.benchdoos.beans.components;
 import java.awt.*;
 
 public class JTextComponentElementImpl implements JTextComponentElement {
-    private String name;
     private Color backgroundColor;
     private Color foregroundColor;
     private Color caretColor;
     private Color selectionColor;
+
+    public JTextComponentElementImpl(Color backgroundColor, Color foregroundColor, Color caretColor, Color selectionColor) {
+        this.backgroundColor = backgroundColor;
+        this.foregroundColor = foregroundColor;
+        this.caretColor = caretColor;
+        this.selectionColor = selectionColor;
+    }
+
+    public JTextComponentElementImpl() {
+    }
 
     @Override
     public Color getBackgroundColor() {
