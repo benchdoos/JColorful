@@ -14,23 +14,12 @@
   ~ Eugene Zrazhevsky <eugene.zrazhevsky@gmail.com>
   -->
 
-<Configuration>
+<Configuration status="warn" name="com.github.benchdoos.JColorful" packages="">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d %p %C{1.}:%L [%t] - %msg%n" charset="UTF-8"/>
         </Console>
-        <RollingFile name="Debug" fileName="${sys:java.io.tmpdir}/JColorful-debug.log"
-                     filePattern="${sys:java.io.tmpdir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout header="${java:runtime} - ${java:vm} - ${java:os}" charset="UTF-8">
-                <pattern>%d %p %C{1.}:%L [%t] - %msg%n</pattern>
-            </PatternLayout>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="5 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="1"/>
-        </RollingFile>
-
-        <RollingFile name="Important" fileName="${sys:java.io.tmpdir}/JColorful-info.log"
+        <RollingFile name="JColorful-debug" fileName="${sys:java.io.tmpdir}/JColorful-debug.log"
                      filePattern="${sys:java.io.tmpdir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout header="${java:runtime} - ${java:vm} - ${java:os}" charset="UTF-8">
                 <pattern>%d %p %C{1.}:%L [%t] - %msg%n</pattern>
@@ -43,10 +32,9 @@
     </Appenders>
 
     <Loggers>
-        <Root level="Debug">
-            <AppenderRef ref="Console" level="info"/>
-            <appender-ref ref="Debug" level="debug"/>
-            <appender-ref ref="Important" level="info"/>
+        <Root level="debug">
+            <AppenderRef ref="Console" level="debug"/>
+            <appender-ref ref="JColorful-debug" level="debug"/>
         </Root>
     </Loggers>
 </Configuration>
