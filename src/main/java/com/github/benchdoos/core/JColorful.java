@@ -2,6 +2,9 @@ package com.github.benchdoos.core;
 
 import com.github.benchdoos.beans.Theme;
 import com.github.benchdoos.beans.ThemeImpl;
+import com.github.benchdoos.utils.Logging;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +18,10 @@ import static java.util.Collections.list;
  * Main class of the library
  */
 public class JColorful {
+    private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
     //todo add annotations (what components to ignore)
     public static final Theme EXTREMELY_BLACK = getTheme("/presets/extremelyBlack.json");
     public static final Theme DARK_GRAY = getTheme("/presets/darkGray.json");
-
     private Theme theme = null;
 
     /**
@@ -28,6 +31,7 @@ public class JColorful {
      * @since 1.0
      */
     public JColorful() {
+        log.info("JColorful initializing...");
     }
 
 
@@ -35,16 +39,30 @@ public class JColorful {
      * Class  {@code JColorful} is the main class of the JColorful library.
      *
      * @param theme theme for current implementation
+     * @throws IllegalArgumentException if Theme is null
      * @author Eugene Zrazhevsky
      * @since 1.0
      */
     public JColorful(Theme theme) {
+        log.info("JColorful initializing...");
         if (theme == null) throw new IllegalArgumentException("Theme bean can not be null");
         this.theme = theme;
-        System.out.println("JColorful was set a Theme:"
-                + " name: " + theme.getName()
-                + "; by: " + theme.getAuthor()
-                + "; version: " + theme.getVersion());
+        log.info("JColorful was set a Theme: {}", theme);
+    }
+
+    /**
+     * Gets {@link Theme} from json
+     *
+     * @param path path to json
+     * @return Theme from json
+     * @throws IllegalArgumentException if something is wrong //not it.
+     */
+    public static Theme getTheme(String path) {
+        log.info("Getting theme from path: {}", path);
+        Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
+        String content = scanner.hasNext() ? scanner.next() : "";
+        log.debug("Content for theme is: {}", content);
+        return new ThemeImpl(content);
     }
 
     public static void printUIManagerKeys() {
@@ -76,7 +94,9 @@ public class JColorful {
                 }
             }
         } else {
-            new Atomizer(theme).colorize(component);
+            if (component != null) {
+                new Atomizer(theme).colorize(component);
+            }
         }
     }
 
@@ -109,19 +129,6 @@ public class JColorful {
      */
     public Theme getTheme() {
         return theme;
-    }
-
-    /**
-     * Gets {@link Theme} from json
-     *
-     * @param path path to json
-     * @return Theme from json
-     * @throws IllegalArgumentException if something is wrong //not it.
-     */
-    public static Theme getTheme(String path) {
-        Scanner scanner = new Scanner(JColorful.class.getResourceAsStream(path)).useDelimiter("\\A");
-        String content = scanner.hasNext() ? scanner.next() : "";
-        return new ThemeImpl(content);
     }
 
     /**
