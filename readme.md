@@ -53,7 +53,7 @@ Simple theme example (section "common" is required):
 Library should work like this:
 
 before:
-<img src="/public/white.jpg" align="right" width="888" />
+<img src="/public/white.gif" align="right" width="888" />
 
 after
-<img src="/public/dark.jpg" align="right" width="888" />
+<img src="/public/dark.gif" align="right" width="888" />
