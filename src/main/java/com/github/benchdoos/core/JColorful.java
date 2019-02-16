@@ -6,13 +6,8 @@ import com.github.benchdoos.utils.Logging;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Scanner;
-
-import static java.util.Collections.list;
 
 /**
  * Main class of the library
@@ -65,14 +60,6 @@ public class JColorful {
         return new ThemeImpl(content);
     }
 
-    public static void printUIManagerKeys() {
-        UIDefaults defaults = UIManager.getDefaults();
-        Enumeration<Object> keysEnumeration = defaults.keys();
-        ArrayList<Object> keysList = list(keysEnumeration);
-        for (Object key : keysList) {
-            System.out.println("UIManager: " + key + " - " + UIManager.get(key));
-        }
-    }
 
     /**
      * Colorizes {@link Component} by settings, that got in {@link Theme}.
