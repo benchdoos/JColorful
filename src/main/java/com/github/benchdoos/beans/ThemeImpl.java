@@ -28,11 +28,11 @@ public class ThemeImpl implements Theme {
     private JTreeElement treeElement;
 
     public ThemeImpl(String jsonContent) {
-        this.content = jsonContent;
         ValidateController controller = new ValidateController();
         if (!controller.validate(jsonContent)) {
             throw new IllegalArgumentException("JSON is not valid");
         }
+        this.content = jsonContent;
 
 
         JsonObject rootElement = new JsonParser().parse(jsonContent).getAsJsonObject();
@@ -44,6 +44,14 @@ public class ThemeImpl implements Theme {
         fillInfo();
 
         initTheme(array, gson);
+    }
+
+    public void setContent(String content) {
+        ValidateController controller = new ValidateController();
+        if (!controller.validate(content)) {
+            throw new IllegalArgumentException("JSON is not valid");
+        }
+        this.content = content;
     }
 
     public ThemeImpl() {
