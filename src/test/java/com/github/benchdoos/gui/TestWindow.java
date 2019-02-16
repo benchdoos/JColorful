@@ -97,8 +97,8 @@ public class TestWindow extends JFrame {
 
     private void onOK() {
         if (current.equals(JColorful.EXTREMELY_BLACK)) {
-            current = JColorful.DARK_GRAY;
-            new JColorful(JColorful.DARK_GRAY).colorize(this);
+//            current = JColorful.DARK_GRAY;
+//            new JColorful(JColorful.DARK_GRAY).colorize(this);
         } else {
             current = JColorful.EXTREMELY_BLACK;
             new JColorful(JColorful.EXTREMELY_BLACK).colorize(this);

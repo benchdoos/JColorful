@@ -16,7 +16,7 @@ public class JColorful {
     private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
     //todo add annotations (what components to ignore)
     public static final Theme EXTREMELY_BLACK = getTheme("/presets/extremelyBlack.json");
-    public static final Theme DARK_GRAY = getTheme("/presets/darkGray.json");
+    private static final Theme DARK_GRAY = getTheme("/presets/darkGray.json"); //for next releases
     private Theme theme = null;
 
     /**
