@@ -1,3 +1,8 @@
+[![LATEST_VERSION](https://img.shields.io/maven-central/v/com.github.benchdoos/JColorful.svg?style=flat-square)](https://search.maven.org/artifact/com.github.benchdoos/JColorful)
+[![COMMITS_PER_YEAR](https://img.shields.io/github/commit-activity/y/benchdoos/JColorful.svg?style=flat-square)](https://github.com/benchdoos/JColorful/commits/master)
+[![LICENSE](https://img.shields.io/github/license/benchdoos/JColorful.svg?style=flat-square)](https://github.com/benchdoos/JColorful/blob/master/LICENSE)
+
+
 <img src="https://raw.githubusercontent.com/benchdoos/JColorful/master/public/ico128.png" align="right" width="128" />
 
 If you want to contribute - contact me.
