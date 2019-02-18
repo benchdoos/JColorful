@@ -14,7 +14,7 @@ public class TestCore {
     static Theme defaultWindowsTheme = new ThemeImpl().initDefaults();
 
     public static void main(String[] args) {
-        JColorful colorful = new JColorful(JColorful.DARK_GRAY);
+        JColorful colorful = new JColorful(JColorful.EXTREMELY_BLACK);
         try {
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
