@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
-class DefaultAtomizer implements Atomizer {
+public class DefaultAtomizer implements Atomizer {
     private static final Logger log = LogManager.getLogger(Logging.getCurrentClassName());
 
     private Theme theme;
