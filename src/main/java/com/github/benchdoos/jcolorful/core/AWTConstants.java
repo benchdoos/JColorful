@@ -1,6 +1,7 @@
 package com.github.benchdoos.jcolorful.core;
 
 public interface AWTConstants {
+    //CONTRACT-V-1
     String J_TEXT_COMPONENT = "JTextComponent";
     String J_TABBED_PANE = "JTabbedPane";
     String J_BUTTON = "JButton";
