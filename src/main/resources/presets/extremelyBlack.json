@@ -25,10 +25,10 @@
     },
     {
       "objectType": "JTextComponent",
-      "background": "#333333",
+      "background": "#232323",
       "foreground": "#ffffff",
       "caret": "#ffffff",
-      "selection": "#9F9F9F"
+      "selection": "#6D6D6D"
     },
     {
       "objectType": "JTabbedPane",
@@ -48,11 +48,11 @@
         "foreground": "#ffffff"
       },
       "selectedRow": {
-        "background": "#9B9B9B",
+        "background": "#858585",
         "foreground": "#ffffff"
       },
       "row": {
-        "background": "#777777",
+        "background": "#4F4F4F",
         "foreground": "#ffffff"
       },
       "editor": {
@@ -67,22 +67,22 @@
         "foreground": "#000000"
       },
       "selectedRow": {
-        "background": "#494949",
+        "background": "#858585",
         "foreground": "#ffffff"
       },
       "row": {
-        "background": "#777777",
+        "background": "#4F4F4F",
         "foreground": "#ffffff"
       }
     },
     {
       "objectType": "JList",
       "selectedRow": {
-        "background": "#494949",
+        "background": "#858585",
         "foreground": "#ffffff"
       },
       "row": {
-        "background": "#777777",
+        "background": "#4F4F4F",
         "foreground": "#ffffff"
       }
     },
@@ -91,11 +91,11 @@
       "background": "#000000",
       "foreground": "#ffffff",
       "selectedRow": {
-        "background": "#494949",
+        "background": "#858585",
         "foreground": "#ffffff"
       },
       "row": {
-        "background": "#000000",
+        "background": "#4F4F4F",
         "foreground": "#ffffff"
       }
     }
