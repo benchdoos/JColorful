@@ -13,7 +13,7 @@ To import to a maven project add to `dependencies` section:
 <dependency>
   <groupId>com.github.benchdoos</groupId>
   <artifactId>JColorful</artifactId>
-  <version>1.0.2</version>
+  <version>1.1.0</version> <!--Change to latest version-->
 </dependency>
 ```
 
